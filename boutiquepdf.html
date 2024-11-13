@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique PDF - Académie Virtuelle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .pdf-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pdf-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
+        .more-pdfs {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <h1>Boutique PDF</h1>
+            <p>Explorez notre collection de PDF pour enrichir vos connaissances.</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section id="pdfStore" class="row">
+            <!-- PDF 1 -->
+            <div class="col-md-4">
+                <div class="card pdf-card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/Pratique%20de%20MySQL%20et%20PHP.jpg" alt="Couverture PDF MySQL et PHP" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Pratique de MySQL et PHP</h3>
+                        <p>Tout sur MySQL et PHP.</p>
+                        <p>Nombre acheté : 121</p>
+                        <p>Prix : 4,000 FCFA</p>
+                        <a href="lien_vers_pdf_1.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <!-- PDF 2 -->
+            <div class="col-md-4">
+                <div class="card pdf-card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/Apprendre%20a%20programmer%20avec%20python.jpg" alt="Couverture PDF Python" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Apprendre à programmer avec Python</h3>
+                        <p>Devenir un pro.</p>
+                        <p>Nombre acheté : 18</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_2.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <!-- PDF 3 -->
+            <div class="col-md-4">
+                <div class="card pdf-card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/le%20grand%20livre%20de%20la%20vente.jpg" alt="Couverture PDF Vente" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Le Grand livre de la Vente</h3>
+                        <p>Vendez plus.</p>
+                        <p>Nombre acheté : 302</p>
+                        <p>Prix : 6,000 FCFA</p>
+                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section des PDFs supplémentaires -->
+        <section id="more-pdfs" class="row">
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card pdf-card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/e-commerce.jpg" alt="Couverture PDF E-commerce" class="card-img-top">
+                    <div class="card-body">
+                        <h3>E-commerce: Tout savoir avant de créer une boutique en ligne</h3>
+                        <p>Tout sur le e-commerce.</p>
+                        <p>Nombre acheté : 150</p>
+                        <p>Prix : 5,000 FCFA</p>
+                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+            <!-- PDF 5 -->
+            <div class="col-md-4">
+                <div class="card pdf-card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/Introduction%20a%20l'algorithmique.jpg" alt="Couverture PDF Algorithmique" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Introduction à l'algorithmique</h3>
+                        <p>Acquérir une base solide.</p>
+                        <p>Nombre acheté : 10</p>
+                        <p>Prix : 2,000 FCFA</p>
+                        <a href="lien_vers_pdf_5.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/cr%C3%A9ez%20votre%20site%20web.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Créez votre site web: Guide complet</h3>
+                        <p>Apprenez à créer votre site web.</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+   
+           
+       
+            <div class="more-pdfs" style="display: none;">
+                <!-- PDF 7 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/e-commerce.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
+                        <div class="card-body">
+                            <h3>E-commerce: tout savoir avant de créez une boutique en ligne</h3>
+                            <p>tout sur le e-commerce.</p>
+                            <p>Nombre acheté : 150</p>
+                            <p>Prix : 5,000 FCFA</p>
+                            <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- PDF 8 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/cr%C3%A9ez%20votre%20site%20web%20avec%20worpress.png" alt="Couverture PDF Titre 8" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Créez votre  site web avec wordpress</h3>
+                            <p>Tout sur le création de site worpress</p>
+                            <p>Nombre acheté : 20</p>
+                            <p>Prix : 2,500 FCFA</p>
+                            <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/s%C3%A9curit%C3%A9%20informatique.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Sécurité informatique-apprendre l'attaque pour mieux se défendre </h3>
+                            <p>Guide Complet pour Débutants.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 2,000 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/math%C3%A9matiques%20analyse%20L3.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Mathématiques analyse L3 </h3>
+                            <p>Cours complet</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 2,500 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/architecture%20de%20l'ordinateur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Architecture de l'ordinateur </h3>
+                            <p>Guide Complet pour Débutants.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 3,500 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/l'ordinateur%20portable%20windows%2010%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>l'Ordinateur portable windows 10 pour les nuls</h3>
+                            <p>Guide Complet pour Débutants.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix :4,000 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/exos%20r%C3%A9solus%20physique%20chimie%20MPSI.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Exos résolus physique chimie MPSI </h3>
+                            <p>Guide Complet pour Débutants.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 2,500 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/pgysique-chimie%20terminales-livre%20du%20professeur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Physique/chimie terminales-livre du professeur </h3>
+                            <p>Tout sur la physique chimie.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 3,000 FCFA</p>
+                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- PDF 10 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/couverture%20pdf/les%20r%C3%A9seaux%20informatique.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Les réseaux informatique</h3>
+                            <p>Tout savoir sur les réseaux informatique</p>
+                            <p>Nombre acheté : 4</p>
+                            <p>Prix : 3,500 FCFA</p>
+                            <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/architecture%20des%20machines%20et%20des%20syst%C3%A8mes%20informatique.jpg" alt="Couverture PDF Titre 3" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Architecture des machines et des systèmes d'exploitations</h3>
+                        <p>Connaître le contenu de la machine</p>
+                        <p>Nombre acheté : 302</p>
+                        <p>Prix : 4,000 FCFA</p>
+                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/physique-chimie%20terminale%20S.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Physique chimie terminale S</h3>
+                        <p>cours complet</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 2,500 FCFA</p>
+                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/word%202016%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Word 2016 pour les nuls</h3>
+                        <p>Tout sur word 2016</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 4,000 FCFA</p>
+                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/le%20marketing%20digital%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <div class="card-body">
+                        <h3>le marketing digital pour les nuls</h3>
+                        <p>Toute la strategie de la vente en ligne</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 8,000 FCFA</p>
+                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/mini%20manuel%20chimie%20organique.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Mini manuel chimie organique</h3>
+                        <p>l'Essentiel du cours sur la chimie organique</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+    
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/chimie%20des%20solutions.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Chimie des solutions </h3>
+                        <p>Cours complet</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/physique%20chimie%20s%C3%A9conde.png" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Physique chimie séconde</h3>
+                        <p>Cours complet</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 2,500 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/informatique%20pour%20tous.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Informatique pour tous-programation python, langage SQL </h3>
+                        <p>Devenir un pro en informatique </p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 4,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/le%20management%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Le management pour les nuls </h3>
+                        <p>Devenir un pro en management</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 5,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/excel%202016%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Excel 2016 pour les nuls </h3>
+                        <p>Les bases de excel 2016</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 5,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/le%20hacking%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Le hacking pour les nuls </h3>
+                        <p>Devenir un hacker professionel</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 7,000 FCFA</p>
+                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 7 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/debuter%20en%20informatique.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Debuter en informatique</h3>
+                        <p>Principes Fondamentaux et Meilleures Pratiques.</p>
+                        <p>Nombre acheté : 11</p>
+                        <p>Prix : 4,000 FCFA</p>
+                        <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 8 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/glossaire%20des%20termes%20informatique.jpg" alt="Couverture PDF Titre 8" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Glossaire des termes informatique</h3>
+                        <p>Comprendre les termes informatique.</p>
+                        <p>Nombre acheté : 3</p>
+                        <p>Prix : 2,000 FCFA</p>
+                        <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 9 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/informatique-MP-PSI-PT.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Informatique: MP, PC, PSI, PT annales corrigées et commentées</h3>
+                        <p>Apprendre plus de l'informatique</p>
+                        <p>Nombre acheté : 10</p>
+                        <p>Prix : 6,000 FCFA</p>
+                        <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 10 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/codage%20et%20cryptographie.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Codage et cryptographie-mathematiciens espions et pirates informatique</h3>
+                        <p>les bases solides</p>
+                        <p>Nombre acheté : 5</p>
+                        <p>Prix : 4,500 FCFA</p>
+                        <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 11 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/math%C3%A9matiques%20L1.jpg" alt="Couverture PDF Titre 11" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Mathématiques L1: cours complet avec 1000 tests et exercices corrigés</h3>
+                        <p>Maths Licence 1.</p> 
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_11.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 12 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/math%C3%A9matiques%20pour%20l'ing%C3%A9nieur.jpg" alt="Couverture PDF Titre 12" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Mathématiques pour l'ingénieur</h3>
+                        <p>une autre facette de l'ingénieur</p>
+                        <p>Nombre acheté : 8</p>
+                        <p>Prix : 5,000 FCFA</p>
+                        <a href="lien_vers_pdf_12.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 13 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/python%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 13" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Python pour les nuls</h3>
+                        <p>Bases solides de python</p>
+                        <p>Nombre acheté : 6</p>
+                        <p>Prix : 6,000 FCFA</p>
+                        <a href="lien_vers_pdf_13.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 14 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/biochimie%20clinique.jpg" alt="Couverture PDF Titre 14" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Biochimie clinique</h3>
+                        <p>le cours complet</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 7,000 FCFA</p>
+                        <a href="lien_vers_pdf_14.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 15 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/couverture%20pdf/alg%C3%A8bre%20et%20analyses.jpg" alt="Couverture PDF Titre 15" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Algèbre et analyse</h3>
+                        <p>cours complet</p>
+                        <p>Nombre acheté : 11</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="lien_vers_pdf_15.pdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            
+            <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="/couverture%20pdf/demarrer%20avec%20windows%2010.jpg" alt="Couverture PDF Titre 21" class="pdf-cover">
+                <h3>Demarrer avec windows 10</h3>
+                <p>Tout sur le windows 10</p>
+                <p>Nombre acheté : 7</p>
+                <p>Prix : 8,000 FCFA</p>
+                <a href="lien_vers_pdf_21.pdf" class="btn btn-success">Acheter</a>
+            </div>
+    </div>
+        </section>
+
+        <!-- Bouton pour afficher plus de PDFs -->
+        <div class="text-center mt-4">
+            <button id="show-more-btn" class="btn btn-primary">Voir plus de PDFs</button>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 text-center">
+        <p>&copy; 2024 Académie Virtuelle. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Script pour afficher plus de PDFs
+        document.getElementById('show-more-btn').addEventListener('click', function () {
+            const morePdfs = document.getElementById('more-pdfs');
+            if (morePdfs.style.display === 'none') {
+                morePdfs.style.display = 'flex';
+                this.innerText = 'Afficher moins de PDFs';
+            } else {
+                morePdfs.style.display = 'none';
+                this.innerText = 'Voir plus de PDFs';
+            }
+        });
+    </script>
+</body>
+</html>
