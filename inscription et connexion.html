@@ -96,8 +96,35 @@
 </head>
 
 <body>
+     <!-- Formulaire de connexion -->
+     <section id="connexion" class="container my-5" >
+        <h2>Connexion</h2>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="login-email">Email :</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" id="login-email" class="form-control" placeholder="Entrez votre email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Mot de passe :</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    </div>
+                    <input type="password" id="login-password" class="form-control" placeholder="Entrez votre mot de passe" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-block">Se Connecter</button>
+            <p class="text-center mt-3">Mot de passe oublié ? <a href="#" id="reset-password">Réinitialiser</a></p>
+            <p class="text-center mt-3">Pas encore de compte ? <a href="#" id="show-signup-form">S'inscrire</a></p>
+        </form>
+    </section>
     <!-- Formulaire d'inscription -->
-    <section id="inscription" class="container my-5">
+    <section id="inscription" class="container my-5"style="display: none;">
         <h2>Inscription Étudiant</h2>
         <form id="signup-form">
             <div class="form-group">
@@ -172,33 +199,7 @@
         </form>
     </section>
 
-    <!-- Formulaire de connexion -->
-    <section id="connexion" class="container my-5" style="display: none;">
-        <h2>Connexion</h2>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="login-email">Email :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    </div>
-                    <input type="email" id="login-email" class="form-control" placeholder="Entrez votre email" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="login-password">Mot de passe :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    </div>
-                    <input type="password" id="login-password" class="form-control" placeholder="Entrez votre mot de passe" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-block">Se Connecter</button>
-            <p class="text-center mt-3">Mot de passe oublié ? <a href="#" id="reset-password">Réinitialiser</a></p>
-            <p class="text-center mt-3">Pas encore de compte ? <a href="#" id="show-signup-form">S'inscrire</a></p>
-        </form>
-    </section>
+   
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
@@ -294,7 +295,7 @@
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then(() => {
-                    window.location.href = '/profil%20utilisateur.html';  // Redirection vers le tableau de bord
+                    window.location.href = 'cours.html';  // Redirection vers le tableau de bord
                 });
             } else {
                 Swal.fire({
