@@ -8,14 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
-        /* Style de base pour le corps */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
         }
 
-        /* Section d'inscription */
         #inscription, #connexion {
             background-color: #fff;
             border-radius: 15px;
@@ -25,22 +23,19 @@
         }
 
         #inscription:hover, #connexion:hover {
-            box-shadow: 0 8px 30px rgba(243, 243, 243, 0.2);
+            box-shadow: 0 8px 30px rgb(252, 251, 251);
         }
 
-        /* Titre de la section */
         h2 {
             text-align: center;
             margin-bottom: 20px;
             color: #003366;
         }
 
-        /* Espacement des groupes de formulaire */
         .form-group {
             margin-bottom: 20px;
         }
 
-        /* Style des boutons */
         .btn {
             background-color: #003366;
             border: none;
@@ -51,23 +46,20 @@
         }
 
         .btn:hover {
-            background-color: #002244;
+            background-color: #f58c00;
             transform: scale(1.05);
         }
 
-        /* Style pour les icônes des champs */
         .input-group-prepend .input-group-text {
             background-color: #f58c00;
             color: white;
             border: none;
         }
 
-        /* Ombres douces pour les champs */
         .input-group-text, .form-control {
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Style responsive pour les petits écrans */
         @media (max-width: 576px) {
             .container {
                 padding: 15px;
@@ -82,7 +74,6 @@
             }
         }
 
-        /* Animation douce pour les messages d'alerte */
         .swal2-popup {
             font-size: 1.1rem !important;
             animation: fadeIn 0.5s ease;
@@ -92,119 +83,191 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .progress {
+            height: 20px;
+        }
+        .progress-bar {
+        background-color: #f58c00; /* Couleur unie bleue */
+    }
+
+    /* Option dégradé */
+    .progress-bar {
+        background: linear-gradient(to right, #ac0202, #01f712); 
+    } 
+    #reset-password-section {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#reset-password-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#reset-password-section .form-group {
+    margin-bottom: 20px;
+}
+
+#reset-password-section .btn {
+    background-color: #003366;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+#reset-password-section .btn:hover {
+    background-color: #002244;
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 
 <body>
-     <!-- Formulaire de connexion -->
-     <section id="connexion" class="container my-5" >
-        <h2>Connexion</h2>
-        <form id="login-form">
-            <div class="form-group">
-                <label for="login-email">Email :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    </div>
-                    <input type="email" id="login-email" class="form-control" placeholder="Entrez votre email" required>
+<section id="connexion" class="container my-5">
+    <h2>Connexion</h2>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="login-email">Email :</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                 </div>
+                <input type="email" id="login-email" class="form-control" placeholder="Entrez votre email" required>
             </div>
-            <div class="form-group">
-                <label for="login-password">Mot de passe :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    </div>
-                    <input type="password" id="login-password" class="form-control" placeholder="Entrez votre mot de passe" required>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Mot de passe :</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
                 </div>
+                <input type="password" id="login-password" class="form-control" placeholder="Entrez votre mot de passe" required>
             </div>
-            <button type="submit" class="btn btn-block">Se Connecter</button>
-            <p class="text-center mt-3">Mot de passe oublié ? <a href="#" id="reset-password">Réinitialiser</a></p>
-            <p class="text-center mt-3">Pas encore de compte ? <a href="#" id="show-signup-form">S'inscrire</a></p>
-        </form>
-    </section>
-    <!-- Formulaire d'inscription -->
-    <section id="inscription" class="container my-5"style="display: none;">
-        <h2>Inscription Étudiant</h2>
-        <form id="signup-form">
-            <div class="form-group">
-                <label for="nom">Nom Complet :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    </div>
-                    <input type="text" id="nom" class="form-control" placeholder="Entrez votre nom" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Adresse Email :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    </div>
-                    <input type="email" id="email" class="form-control" placeholder="Entrez votre email" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="niveau-etudes">Niveau d'Études :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
-                    </div>
-                    <select id="niveau-etudes" class="form-control" required>
-                        <option value="">Sélectionnez votre niveau</option>
-                        <option value="Baccalauréat">Baccalauréat</option>
-                        <option value="Licence">Licence</option>
-                        <option value="Master">Master</option>
-                        <option value="Doctorat">Doctorat</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="programme">Programme Choisi :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-book-open"></i></span>
-                    </div>
-                    <select id="programme" class="form-control" required>
-                        <option value="">Choisissez un programme</option>
-                        <option value="Développement Web">Développement Web</option>
-                        <option value="Infographie">Infographie</option>
-                        <option value="Programmation IA">Programmation IA</option>
-                        <option value="Cuisine">Cuisine</option>
-                        <option value="Pâtisserie">Pâtisserie</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="password">Mot de Passe :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    </div>
-                    <input type="password" id="password" class="form-control" placeholder="Créez un mot de passe" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">Confirmer le Mot de Passe :</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    </div>
-                    <input type="password" id="confirm-password" class="form-control" placeholder="Confirmez le mot de passe" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-block">S'inscrire</button>
-            <p class="text-center mt-3">Déjà un compte ? <a href="#" id="show-login-form">Se connecter</a></p>
-        </form>
-    </section>
+        </div>
+        <button type="submit" class="btn btn-block">Se Connecter</button>
+        <p class="text-center mt-3">Mot de passe oublié ? <a href="#" id="reset-password">Réinitialiser</a></p>
+        <p class="text-center mt-3">Pas encore de compte ? <a href="#" id="show-signup-form">S'inscrire</a></p>
+    </form>
+</section>
 
-   
+<section id="inscription" class="container my-5" style="display: none;">
+    <h2>Inscription</h2>
+    <form id="signup-form">
+        <div class="form-group" id="nom-group">
+            <label for="nom">Nom Complet :</label>
+            <input type="text" id="nom" class="form-control" placeholder="Entrez votre nom" required>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <div class="form-group" id="email-group" style="display: none;">
+            <label for="email">Adresse Email :</label>
+            <input type="email" id="email" class="form-control" placeholder="Entrez votre email" required>
+        </div>
+
+        <div class="form-group" id="telephone-group" style="display: none;">
+            <label for="telephone">Numéro de Téléphone :</label>
+            <input type="tel" id="telephone" class="form-control" placeholder="Entrez votre numéro de téléphone" required>
+        </div>
+
+        <div class="form-group" id="whatsapp-group" style="display: none;">
+            <label for="whatsapp">Numéro WhatsApp :</label>
+            <input type="tel" id="whatsapp" class="form-control" placeholder="Entrez votre numéro WhatsApp" required>
+        </div>
+
+        <div class="form-group" id="pays-group" style="display: none;">
+            <label for="pays">Pays :</label>
+            <input type="text" id="pays" class="form-control" placeholder="Entrez votre pays" required>
+        </div>
+
+        <div class="form-group" id="ville-group" style="display: none;">
+            <label for="ville">Ville :</label>
+            <input type="text" id="ville" class="form-control" placeholder="Entrez votre ville" required>
+        </div>
+
+        <div class="form-group" id="niveau-etudes-group" style="display: none;">
+            <label for="niveau-etudes">Niveau d'Études :</label>
+            <select id="niveau-etudes" class="form-control" required>
+                <option value="">Sélectionnez votre niveau</option>
+                <option value="Baccalauréat">Baccalauréat</option>
+                <option value="Licence">Licence</option>
+                <option value="Master">Master</option>
+                <option value="Doctorat">Doctorat</option>
+                <option value="BEPC">BEPC</option>
+                <option value="CAP">CAP</option>
+                <option value="BT">BT</option>
+                <option value="DUT">DUT</option>
+                <option value="BTS">BTS</option>
+                <option value="Certification Professionnelle">Certification Professionnelle</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="programme-group" style="display: none;">
+            <label for="programme">Programme Choisi :</label>
+            <select id="programme" class="form-control" required>
+                <option value="">Choisissez un programme</option>
+                <option value="Développement Web">Développement Web</option>
+                <option value="Infographie">Infographie</option>
+                <option value="Programmation IA">Programmation IA</option>
+                <option value="Cuisine">Cuisine</option>
+                <option value="Pâtisserie">Pâtisserie</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersécurité">Cybersécurité</option>
+                <option value="Gestion de Projet">Gestion de Projet</option>
+                <option value="Marketing Digital">Marketing Digital</option>
+                <option value="Réseaux et Systèmes">Réseaux et Systèmes</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="password-group">
+            <label for="password">Mot de Passe :</label>
+            <input type="password" id="password" class="form-control" placeholder="Créez un mot de passe" required>
+            <small id="password-requirements" class="form-text text-muted">
+                Le mot de passe doit comporter au moins 8 caractères, inclure une majuscule, un chiffre et un caractère spécial.
+            </small>
+        </div>
+        
+        <div class="form-group" id="confirm-password-group">
+            <label for="confirm-password">Confirmer le Mot de Passe :</label>
+            <input type="password" id="confirm-password" class="form-control" placeholder="Confirmez le mot de passe" required>
+        </div>
+        
+        <div class="progress mt-3" style="height: 20px;">
+            <div class="progress-bar" id="progress-bar" style="width: 0%;"></div>
+        </div>
+        
+        <button type="submit" class="btn btn-block mt-3">S'inscrire</button>
+        <p class="text-center mt-3">Déjà un compte ? <a href="#" id="show-login-form">Se connecter</a></p>
+        
+    </form>
+    </form>
+</section>
+   <!-- Formulaire de Réinitialisation du Mot de Passe -->
+<section id="reset-password-section" class="container my-5" style="display: none;">
+    <h2>Réinitialiser Votre Mot de Passe</h2>
+    <form id="reset-password-form">
+        <div class="form-group">
+            <label for="reset-email">Adresse Email :</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input type="email" id="reset-email" class="form-control" placeholder="Entrez votre email" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-block">Réinitialiser</button>
+        <p class="text-center mt-3">Retour à la <a href="#" id="back-to-login">connexion</a></p>
+    </form>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
-    // Basculer entre les formulaires d'inscription et de connexion
-    document.getElementById('show-login-form').addEventListener('click', function (e) {
+     // Basculer entre les formulaires d'inscription et de connexion
+     document.getElementById('show-login-form').addEventListener('click', function (e) {
         e.preventDefault();
         document.getElementById('inscription').style.display = 'none';
         document.getElementById('connexion').style.display = 'block';
@@ -215,122 +278,219 @@
         document.getElementById('connexion').style.display = 'none';
         document.getElementById('inscription').style.display = 'block';
     });
+    // Sélecteurs pour les formulaires d'inscription et de connexion
+    const formElements = [
+        '#nom', '#email', '#telephone', '#whatsapp', '#pays', '#ville', '#niveau-etudes', '#programme', '#password', '#confirm-password'
+    ];
 
-    // Fonction pour l'inscription des utilisateurs
-    document.getElementById('signup-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // Récupérer les valeurs des champs du formulaire d'inscription
-        const nom = document.getElementById('nom').value;
-        const email = document.getElementById('email').value;
-        const niveauEtudes = document.getElementById('niveau-etudes').value;
-        const programme = document.getElementById('programme').value;
-        const password = document.getElementById('password').value;
-
-        // URL de Google Apps Script pour la gestion des inscriptions
-        const url = 'https://script.google.com/macros/s/AKfycbwksGjtO8lHvWwS4sCYrBYxQNw07nATJOLC9YCWgZlECWM39Yxc0H_9i3btACVuum4X/exec';
-        
-        // Envoi des données au script Apps Script
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'signup',
-                nom: nom,
-                email: email,
-                niveau_etudes: niveauEtudes,
-                programme: programme,
-                password: password
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                Swal.fire({
-                    title: 'Succès !',
-                    text: 'Compte créé avec succès.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    document.getElementById('signup-form').reset();
-                    window.location.href = '#';  // Redirection vers la page de connexion
-                });
-            } else {
-                Swal.fire({
-                    title: 'Erreur !',
-                    text: data.message || 'Erreur lors de la création du compte',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
-        })
-        .catch(error => console.error('Erreur : ', error));
-    });
-
-    // Fonction pour la connexion des utilisateurs
-    document.getElementById('login-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // Récupérer les valeurs des champs du formulaire de connexion
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-
-        // URL de Google Apps Script pour la gestion des connexions
-        const url = 'https://script.google.com/macros/s/AKfycbwksGjtO8lHvWwS4sCYrBYxQNw07nATJOLC9YCWgZlECWM39Yxc0H_9i3btACVuum4X/exec';
-        
-        // Envoi des données au script Apps Script
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({
-                action: 'login',
-                email: email,
-                password: password
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                Swal.fire({
-                    title: 'Succès !',
-                    text: 'Connexion réussie.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then(() => {
-                    window.location.href = 'cours.html';  // Redirection vers le tableau de bord
-                });
-            } else {
-                Swal.fire({
-                    title: 'Erreur !',
-                    text: data.message || 'Erreur lors de la connexion',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
-        })
-        .catch(error => console.error('Erreur : ', error));
-    });
-
-    // Fonction pour réinitialiser le mot de passe
-    document.getElementById('reset-password').addEventListener('click', function (e) {
-        e.preventDefault();
-
-        // Récupérer l'email pour la réinitialisation du mot de passe
-        const email = document.getElementById('login-email').value;
-
-        if (email) {
-            resetPassword(email);
-        } else {
-            Swal.fire({
-                title: 'Erreur !',
-                text: 'Veuillez entrer votre adresse email.',
-                icon: 'error',
-                confirmButtonText: 'OK'
+    // Afficher les champs au fur et à mesure
+    formElements.forEach((el, index) => {
+        const nextElement = formElements[index + 1];
+        if (nextElement) {
+            $(el).on('input', function () {
+                if ($(el).val()) {
+                    $(nextElement).parent().show();
+                    updateProgress();
+                }
             });
         }
     });
 
-    // Fonction pour envoyer la demande de réinitialisation au script Apps Script
-    function resetPassword(email) {
-        const url = 'https://script.google.com/macros/s/AKfycbwksGjtO8lHvWwS4sCYrBYxQNw07nATJOLC9YCWgZlECWM39Yxc0H_9i3btACVuum4X/exec';
+    function updateProgress() {
+        const filledFields = formElements.filter(el => $(el).val()).length;
+        const progressPercentage = (filledFields / formElements.length) * 100;
+        $('#progress-bar').css('width', progressPercentage + '%');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Basculer entre les formulaires d'inscription et de connexion
+        document.getElementById('show-signup-form').addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('connexion').style.display = 'none';
+            document.getElementById('inscription').style.display = 'block';
+        });
+
+    document.getElementById('show-signup-form').addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('connexion').style.display = 'none';
+                document.getElementById('inscription').style.display = 'block';
+            });
+    
+            // Vérifier si l'utilisateur s'est déjà inscrit
+            if (localStorage.getItem('isSignedUp') === 'true') {
+                document.getElementById('inscription').style.display = 'none';
+                document.getElementById('connexion').style.display = 'block';
+                localStorage.removeItem('isSignedUp');
+            }
+    
+            // Fonction pour l'inscription des utilisateurs
+            document.getElementById('signup-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+    
+                const nom = document.getElementById('nom').value;
+                const email = document.getElementById('email').value;
+                const telephone = document.getElementById('telephone').value;
+                const whatsapp = document.getElementById('whatsapp').value;
+                const pays = document.getElementById('pays').value;
+                const ville = document.getElementById('ville').value;
+                const niveauEtudes = document.getElementById('niveau-etudes').value;
+                const programme = document.getElementById('programme').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                 // Vérification de la politique de sécurité des mots de passe
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        Swal.fire({
+            title: 'Erreur !',
+            text: 'Le mot de passe doit comporter au moins 8 caractères, inclure une majuscule, un chiffre et un caractère spécial.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+// Vérifier si les mots de passe correspondent
+if (password !== confirmPassword) {
+    Swal.fire({
+        title: 'Erreur !',
+        text: 'Les mots de passe ne correspondent pas.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    });
+    return; // Ne pas envoyer la requête si les mots de passe ne correspondent pas
+}
+     // Afficher la progression
+     let progress = 0;
+    const progressBar = document.getElementById('progress-bar');
+    const interval = setInterval(function () {
+        progress += 10;
+        progressBar.style.width = progress + '%';
+        if (progress === 100) {
+            clearInterval(interval);
+        }
+    }, 500); // Progression de 10% toutes les 0.5 secondes
+
+    // Continuez avec l'envoi du formulaire
+                const url = 'https://script.google.com/macros/s/AKfycbyd2j-i3fxQA2bCScG4UPEmGJezamDFYwnbiRjETiHNl-SVfzDHhqoJQzLbTxYJe-o/exec';
+    
+                fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'signup',
+                        nom: nom,
+                        email: email,
+                        telephone: telephone,
+                        whatsapp: whatsapp,
+                        pays: pays,
+                        ville: ville,
+                        niveau_etudes: niveauEtudes,
+                        programme: programme,
+                        password: password
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        Swal.fire({
+                            title: 'Succès !',
+                            text: 'Compte créé avec succès.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            document.getElementById('signup-form').reset();
+                            localStorage.setItem('isSignedUp', 'true');
+                            window.location.href = '#';
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Erreur !',
+                            text: data.message || 'Erreur lors de la création du compte',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => console.error('Erreur : ', error));
+            });
+    
+            // Fonction pour la connexion des utilisateurs
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+    
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                const url = 'https://script.google.com/macros/s/AKfycbyd2j-i3fxQA2bCScG4UPEmGJezamDFYwnbiRjETiHNl-SVfzDHhqoJQzLbTxYJe-o/exec';
+    
+                fetch(url, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'login',
+                        email: email,
+                        password: password
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        Swal.fire({
+                            title: 'Succès !',
+                            text: 'Connexion réussie.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            window.location.href = 'cours.html';
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Erreur !',
+                            text: data.message || 'Erreur lors de la connexion',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => console.error('Erreur : ', error));
+            });
+    
+    // Sélecteurs
+    const resetPasswordLink = document.getElementById('reset-password');
+    const backToLoginLink = document.getElementById('back-to-login');
+    const resetPasswordSection = document.getElementById('reset-password-section');
+    const loginSection = document.getElementById('connexion');
+    
+    // Afficher la section de réinitialisation
+    resetPasswordLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginSection.style.display = 'none';
+        resetPasswordSection.style.display = 'block';
+    });
+
+    // Retourner au formulaire de connexion
+    backToLoginLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        resetPasswordSection.style.display = 'none';
+        loginSection.style.display = 'block';
+    });
+
+    // Fonction de réinitialisation du mot de passe
+    document.getElementById('reset-password-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('reset-email').value;
+
+        if (!email) {
+            Swal.fire({
+                title: 'Erreur !',
+                text: 'Veuillez entrer une adresse email.',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        // URL pour la réinitialisation (assurez-vous d'utiliser votre URL)
+        const url = 'https://script.google.com/macros/s/AKfycbyd2j-i3fxQA2bCScG4UPEmGJezamDFYwnbiRjETiHNl-SVfzDHhqoJQzLbTxYJe-o/exec';
         
         fetch(url, {
             method: 'POST',
@@ -341,24 +501,24 @@
         })
         .then(response => response.json())
         .then(data => {
-            Swal.fire({
-                title: data.message ? 'Information' : 'Erreur',
-                text: data.message || 'Vérifiez votre email pour la réinitialisation du mot de passe',
-                icon: data.message ? 'info' : 'error',
-                confirmButtonText: 'OK'
-            });
+            if (data.status === 'success') {
+                Swal.fire({
+                    title: 'Succès !',
+                    text: 'Un lien de réinitialisation a été envoyé à votre email.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Erreur !',
+                    text: data.message || 'Erreur lors de la réinitialisation.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
         })
         .catch(error => console.error('Erreur : ', error));
-    }
-    // Ajouter ce code à la fin de votre script
-document.addEventListener('DOMContentLoaded', function () {
-    // Vérifier si l'utilisateur s'est inscrit
-    if (localStorage.getItem('isSignedUp') === 'true') {
-        document.getElementById('inscription').style.display = 'none';
-        document.getElementById('connexion').style.display = 'block';
-        // Enlever l'élément du localStorage après affichage
-        localStorage.removeItem('isSignedUp');
-    }
+    });
 });
 </script>
 </body>
