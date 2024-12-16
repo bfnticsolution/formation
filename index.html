@@ -525,23 +525,19 @@ select {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">
+                    <a class="nav-link" href="#contact"> 
                         <i class="fas fa-envelope"></i> Contact
                     </a>
                 </li>
+              
                 <li class="nav-item">
-                    <a class="nav-link" href="#userProfile">
-                        <i class="fas fa-user"></i> Mon compte
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link btn btn-primary" href="inscription et connexion.html" id="loginButton">
+                    <a class="nav-link btn btn-primary" href="inscription et connexion.html">
                         <i class="fas fa-sign-in-alt"></i> Accedez aux Cours
                     </a>
                 </li>
                 <br>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-secondary" href="inscription et connexion.html" id="registerButton">
+                    <a class="nav-link btn btn-secondary" href="inscription et connexion.html">
                         <i class="fas fa-user-plus"></i> Inscription
                     </a>
                 </li>
@@ -549,41 +545,6 @@ select {
         </div>
     </div>
 </header>
-
-    <section id="userProfile" class="container py-5" style="display: none;">
-        <h2 class="text-center mb-5">Mon Profil</h2>
-        
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-                <div class="form-group"> <center>
-                    <label for="userProfileImage"> </label>
-                   <img id="profileImageDisplay" src="" alt="Photo de Profil" style="width: 100px; height: auto;"></center>
-                </div>
-                <div class="form-group">
-                    <label for="userName">Nom :</label>
-                    <input type="text" class="form-control" id="userName" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="userEmail">Email :</label>
-                    <input type="email" class="form-control" id="userEmail" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="userPhone">Numéro de téléphone :</label>
-                    <input type="tel" class="form-control" id="userPhone" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="userCountry">Pays :</label>
-                    <input type="text" class="form-control" id="userCountry" disabled>
-                </div>
-               
-                <center><button id="editProfileButton" class="btn btn-secondary">Modifier le Profil</button>
-                    <center><button id="saveProfileButton" class="btn btn-primary" style="display:none;">Sauvegarder</button>
-            </div>
-        </div>
-    </section>
-    
-    
-    
 <!-- Modale de bienvenue -->
 <div id="welcomeModal" class="modal">
     <div class="modal-content">
@@ -601,178 +562,6 @@ select {
     </div>
 </div>
 
-
-    <!-- Modale de connexion -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeLoginButton">&times;</span>
-            <center>
-                <h2>Identifiez-Vous</h2>
-                <img src="images/logo université virtuelle.png" alt="Académie Virtuelle" style="height: 100px;">
-            </center>
-        
-            <form id="loginForm" onsubmit="login(); return false;">
-                <div class="form-group">
-                    <label for="username">Identifiants :</label>
-                    <div class="input-container">
-                        <i class="fa fa-user"></i> <!-- Ajoutez l'icône ici -->
-                        <input type="text" class="form-control" id="username" placeholder="Identifiant" required>
-                        
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Mot de passe :</label>
-                    <div class="input-container">
-                        <i class="fa fa-lock"></i> <!-- Ajoutez l'icône ici -->
-                        <input type="password" class="form-control" id="password" placeholder="Mot de passe" required>
-                        <button type="button" id="togglePassword">Afficher</button>
-                    </div>
-                </div>
-                
-                
-                
-                <div class="remember-me">
-                    <input type="checkbox" id="rememberMe"> <label for="rememberMe">Se souvenir de moi</label>
-                </div>
-                <br>
-                
-                    <button <center type="submit" class="loginButton">Ouvrir la Salle</button>
-                
-                <br>
-                
-                    <p>Pas encore inscrit ? <a href="inscription et connexion.html" id="registerButtonInLogin">Inscription</a></p>
-               
-            </form>
-            <div id="message" class="message"></div>
-        </div>
-    </div>
-    
-    
-    
-
-     <!-- Modale d'inscription -->
-     <div id="registrationModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeRegisterButton">&times;</span>
-            <br>
-            <center><p>Déjà inscrit ? <a href="inscription et connexion.html" >Connexion</a></p>
-        
-            <center><h2>Inscription</h2></center>
-               
-            <!-- Barre de progression -->
-            <div id="progressContainer">
-                <div id="progressBar" style="width: 0%;"></div>
-            </div>
-    
-            <form id="registrationForm">
-                <div class="form-step" id="step-1">
-                    <div class="form-group">
-                        <label for="studentName">Nom :</label>
-                        <input type="text" class="form-control" id="studentName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="studentEmail">Email :</label>
-                        <input type="email" class="form-control" id="studentEmail" required>
-                    </div>
-                    <button type="button" class="btn btn-primary next">Suivant</button>
-                </div>
-    
-                <div class="form-step" id="step-2" style="display: none;">
-                    <div class="form-group">
-                        <label for="countryCode">Indicatif de pays :</label>
-                        <select class="form-control" id="countryCode" required>
-                            <option value="" disabled selected>Choisir un indicatif</option>
-                        
-                            <option value="229">🇧🇯 +229 Bénin</option>
-<option value="226">🇧🇫 +226 Burkina Faso</option>
-<option value="237">🇨🇲 +237 Cameroun</option>
-<option value="243">🇨🇩 +243 République Démocratique du Congo (Kinshasa)</option>
-<option value="242">🇨🇬 +242 République du Congo (Brazzaville)</option>
-<option value="225">🇨🇮 +225 Côte d'Ivoire</option>
-<option value="33">🇫🇷 +33 France</option>
-<option value="241">🇬🇦 +241 Gabon</option>
-<option value="220">🇬🇲 +220 Gambie</option>
-<option value="224">🇬🇳 +224 Guinée</option>
-<option value="245">🇬🇼 +245 Guinée-Bissau</option>
-<option value="218">🇱🇾 +218 Libye</option>
-<option value="223">🇲🇱 +223 Mali</option>
-<option value="212">🇲🇦 +212 Maroc</option>
-<option value="222">🇲🇷 +222 Mauritanie</option>
-<option value="227">🇳🇪 +227 Niger</option>
-<option value="221">🇸🇳 +221 Sénégal</option>
-<option value="235">🇹🇩 +235 Tchad</option>
-<option value="228">🇹🇬 +228 Togo</option>
-
-
-                            
-                        </select>
-                        
-                    </div>
-                    <div class="form-group">
-                        <label for="whatsappNumber">Numéro WhatsApp :</label>
-                        <input type="tel" class="form-control" id="whatsappNumber" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumber">Numéro de téléphone :</label>
-                        <input type="tel" class="form-control" id="phoneNumber" required>
-                    </div>
-                    <button type="button" class="btn btn-secondary prev">Précédent</button>
-                    <button type="button" class="btn btn-primary next">Suivant</button>
-                </div>
-    
-                <div class="form-step" id="step-3" style="display: none;">
-                    <div class="form-group">
-                        <label for="country">Pays :</label>
-                        <input type="text" class="form-control" id="country" required>
-                    </div>
-                    <button type="button" class="btn btn-secondary prev">Précédent</button>
-                    <button type="button" class="btn btn-primary next">Suivant</button>
-                </div>
-    
-                <div class="form-step" id="step-4" style="display: none;">
-                    <div class="form-group">
-                        <label for="courseSelection">Sélectionnez un cours :</label>
-                        <select class="form-control" id="courseSelection" required>
-                            <option value="" disabled selected>Choisir un cours</option>
-<option value="Développement Web">Développement Web</option>
-<option value="Adobe Photoshop">Adobe Photoshop</option>
-<option value="Réseaux Sociaux">Réseaux Sociaux</option>
-<option value="Python">Python</option>
-<option value="Cybersécurité">Cybersécurité</option>
-<option value="Programmation C">Programmation C</option>
-<option value="Marketing Digital">Marketing Digital</option>
-<option value="CSS Avancé">CSS Avancé</option>
-<option value="Gestion de Projet">Gestion de Projet</option>
-<option value="SEO et Marketing de Contenu">SEO et Marketing de Contenu</option>
-<option value="Développement Mobile">Développement Mobile</option>
-<option value="Analyse de Données">Analyse de Données</option>
-<option value="Cloud Computing">Cloud Computing</option>
-<option value="Blockchain">Blockchain</option>
-<option value="Intelligence Artificielle">Intelligence Artificielle</option>
-<option value="Gestion Financière">Gestion Financière</option>
-<option value="Productivité Personnelle">Productivité Personnelle</option>
-<option value="Compétences en Présentation">Compétences en Présentation</option>
-<option value="Stratégies de Négociation">Stratégies de Négociation</option>
-
-                        </select>
-                    </div>
-
-                    <button type="button" class="btn btn-secondary prev">Précédent</button>
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
-                </div>
-            </form>
-            
-            <div id="thankYouMessage" style="display: none;">
-               <center> <h3>Inscription Réussie</h3></center>
-                <center><img src="/image/validation.png" alt="Merci" style="width: 100px; height: auto; margin-top: 10px;"></center>
-                <center><p>Vous serez contacté par l'administration pour le paiement des frais.</p></center>
-                
-            </div>
-            
-        </div>
-    </div>
-    
 <!-- Modal de Confirmation -->
 <div id="confirmationModal" class="modal">
     <div class="modal-content">
@@ -825,7 +614,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 75 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 120</li>
                         </ul>
                         <a href="" class="btn btn-outline-primary">SUIVRE LE COURS COMPLET</a>
@@ -838,7 +627,7 @@ select {
                     <div class="card-body">
                         <h5 class="card-title">Adobe Photoshop</h5>
                         <video class="card-img-top" controls>
-                            <source src="videos/presentations/adobe_photoshop_presebtation.mp4" type="video/mp4">
+                            <source src="vidéos/adobe photoshop presentation.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                         <p class="mt-3">Maîtrisez les bases et les techniques avancées de la retouche photo et du design graphique avec Adobe Photoshop.</p>
@@ -853,7 +642,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 90</li>
                         </ul>
                         <a href="#" class="btn btn-outline-primary">En savoir plus</a>
@@ -866,7 +655,7 @@ select {
                     <div class="card-body">
                         <h5 class="card-title">Réseaux Sociaux</h5>
                         <video class="card-img-top" controls>
-                            <source src="videos/presentations/Réseaux_sociaux_présentation.mp4" type="video/mp4">
+                            <source src="vidéos/reseaux sociaux presentation.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                         <p class="mt-3">Apprenez à utiliser les réseaux sociaux pour la gestion de marque, le marketing et l'engagement communautaire.</p>
@@ -881,7 +670,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 80</li>
                         </ul>
                         <a href="#" class="btn btn-outline-primary">En savoir plus</a>
@@ -894,7 +683,7 @@ select {
                     <div class="card-body">
                         <h5 class="card-title">Python</h5>
                         <video class="card-img-top" controls>
-                            <source src="videos/presentations/Python_présentation.mp4" type="video/mp4">
+                            <source src="vidéos/python presentation.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                         <p class="mt-3">Apprenez les bases de la programmation avec Python, un langage puissant et polyvalent pour le développement logiciel et l'analyse de données.</p>
@@ -909,7 +698,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 65 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 100</li>
                         </ul>
                         <a href="#" class="btn btn-outline-primary">En savoir plus</a>
@@ -922,7 +711,7 @@ select {
                     <div class="card-body">
                         <h5 class="card-title">Cybersécurité</h5>
                         <video class="card-img-top" controls>
-                            <source src="vidéos/Cybersecurité_Présentation.mp4" type="video/mp4">
+                            <source src="vidéos/cybersecurite presentation.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                         <p class="mt-3">Apprenez à protéger les systèmes informatiques contre les menaces et à assurer la sécurité des données.</p>
@@ -937,7 +726,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 45 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 85 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix :Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 70</li>
                         </ul>
                         <a href="#" class="btn btn-outline-primary">En savoir plus</a>
@@ -950,7 +739,7 @@ select {
                     <div class="card-body">
                         <h5 class="card-title">Programmation C</h5>
                         <video class="card-img-top" controls>
-                            <source src="videos/presentations/Programmation_C.mp4" type="video/mp4">
+                            <source src="vidéos/programmation c presentation.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                         <p class="mt-3">Apprenez les bases de la programmation en langage C, un langage de programmation fondamental pour comprendre les concepts informatiques et développer des applications performantes.</p>
@@ -965,7 +754,7 @@ select {
                         <ul class="list-unstyled mt-3">
                             <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
                             <li><i class="fas fa-language"></i> Langue : Français</li>
-                            <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
                             <li><i class="fas fa-users"></i> Nombre de personnes formées : 95</li>
                         </ul>
                         <a href="#" class="btn btn-outline-primary">En savoir plus</a>
@@ -1012,10 +801,7 @@ select {
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">CSS Avancé</h5>
-                            <video class="card-img-top" controls>
-                                <source src="video_css_avance.mp4" type="video/mp4">
-                                Votre navigateur ne supporte pas la vidéo.
-                            </video>
+                            <img class="card-img-top" src="image/css avance cover.jpg" alt="CSS Avancé">
                             <p class="mt-3">Perfectionnez vos compétences en CSS pour créer des mises en page réactives et des animations fluides, tout en explorant les techniques avancées.</p>
                             <h6>Plan du cours :</h6>
                             <ul class="list-unstyled">
@@ -1034,16 +820,14 @@ select {
                             <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                         </div>
                     </div>
-               </div>
+                </div>
+                
 
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Design UX/UI</h5>
-                    <video class="card-img-top" controls>
-                        <source src="/Design_UX_UI_Presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                    <img class="card-img-top" src="image/design ux ui cover.jpg">
                     <p class="mt-3">Découvrez les bases du design d'expérience utilisateur et d'interface utilisateur pour créer des applications et des sites web conviviaux.</p>
                     <h6>Plan du cours :</h6>
                     <ul class="list-unstyled">
@@ -1068,10 +852,7 @@ select {
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">JavaScript Avancé</h5>
-                    <video class="card-img-top" controls>
-                        <source src="/JavaScript_Avance_Presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                    <img class="card-img-top" src="image/javascrypt avance cover.jpg">
                     <p class="mt-3">Maîtrisez les concepts avancés de JavaScript, y compris la programmation asynchrone, les modules, les API et les frameworks front-end.</p>
                     <h6>Plan du cours :</h6>
                     <ul class="list-unstyled">
@@ -1096,10 +877,7 @@ select {
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">SEO (Search Engine Optimization)</h5>
-                    <video class="card-img-top" controls>
-                        <source src="/SEO_Presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                    <img class="card-img-top" src="image/seo cover.jpg">
                     <p class="mt-3">Optimisez vos sites web pour les moteurs de recherche afin d'améliorer leur visibilité et attirer plus de trafic.</p>
                     <h6>Plan du cours :</h6>
                     <ul class="list-unstyled">
@@ -1579,20 +1357,6 @@ select {
     <section id="pdfStore" class="container py-5">
         <h2 class="text-center mb-5">Boutique PDF</h2>
         <div class="row">
-            <!-- PDF 1 -->
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <center><h3>FORMATION WEP</h3></center>
-                    <p>Tout sur MySQL et PHP</p>
-                    <img src="image/tout" alt="Couverture PDF Titre 1" class="card-img-top">
-                    <div class="card-body">
-                        <p>Nombre acheté : 121</p>
-                        <p>Prix : 4,000 FCFA</p>
-                        <a href="pdf/Word-Excel-PwP (www.BiblioLeaders.Com).pdf" class="btn btn-success">Acheter</a>
-                    </div>
-                </div>
-            </div>
-    
             <!-- PDF 2 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
@@ -1602,7 +1366,7 @@ select {
                         <p>Devenir un pro.</p>
                         <p>Nombre acheté : 18</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="pdf/9782100776672.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1616,7 +1380,7 @@ select {
                         <p>Vendez plus</p>
                         <p>Nombre acheté : 302</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1630,7 +1394,7 @@ select {
                         <p>Techniques pas à pas sur le C++.</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1644,7 +1408,7 @@ select {
                         <p>Acquerir de base solide.</p>
                         <p>Nombre acheté : 10</p>
                         <p>Prix : 2,000 FCFA</p>
-                        <a href="lien_vers_pdf_5.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1658,13 +1422,14 @@ select {
                         <p>Apprenez à créer votre site web.</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
    
-           
-       
+
+
+
             <div class="more-pdfs" style="display: none;">
                 <!-- PDF 7 -->
                 <div class="col-md-4">
@@ -1675,7 +1440,7 @@ select {
                             <p>tout sur le e-commerce.</p>
                             <p>Nombre acheté : 150</p>
                             <p>Prix : 5,000 FCFA</p>
-                            <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1689,7 +1454,7 @@ select {
                             <p>Tout sur le création de site worpress</p>
                             <p>Nombre acheté : 20</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1703,7 +1468,7 @@ select {
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,000 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1717,7 +1482,7 @@ select {
                             <p>Cours complet</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1731,7 +1496,7 @@ select {
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 3,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1745,7 +1510,7 @@ select {
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix :4,000 FCFA</p>
-                            <a href="pdf/windows word excel pour les nuls.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1759,7 +1524,7 @@ select {
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1773,7 +1538,7 @@ select {
                             <p>Tout sur la physique chimie.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 3,000 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1787,7 +1552,7 @@ select {
                             <p>Tout savoir sur les réseaux informatique</p>
                             <p>Nombre acheté : 4</p>
                             <p>Prix : 3,500 FCFA</p>
-                            <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -1801,7 +1566,7 @@ select {
                         <p>Connaître le contenu de la machine</p>
                         <p>Nombre acheté : 302</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1815,7 +1580,7 @@ select {
                         <p>cours complet</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 2,500 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1830,7 +1595,7 @@ select {
                         <p>Tout sur word 2016</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="pdf/Formation Word.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1844,7 +1609,7 @@ select {
                         <p>Toute la strategie de la vente en ligne</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 8,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1858,7 +1623,7 @@ select {
                         <p>l'Essentiel du cours sur la chimie organique</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1873,7 +1638,7 @@ select {
                         <p>Cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1887,7 +1652,7 @@ select {
                         <p>Cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 2,500 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1901,7 +1666,7 @@ select {
                         <p>Devenir un pro en informatique </p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1915,7 +1680,7 @@ select {
                         <p>Devenir un pro en management</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1929,7 +1694,7 @@ select {
                         <p>Les bases de excel 2016</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="pdf/Excel2016PLN.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1943,7 +1708,7 @@ select {
                         <p>Devenir un hacker professionel</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 7,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1957,7 +1722,7 @@ select {
                         <p>Principes Fondamentaux et Meilleures Pratiques.</p>
                         <p>Nombre acheté : 11</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1971,7 +1736,7 @@ select {
                         <p>Comprendre les termes informatique.</p>
                         <p>Nombre acheté : 3</p>
                         <p>Prix : 2,000 FCFA</p>
-                        <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1985,7 +1750,7 @@ select {
                         <p>Apprendre plus de l'informatique</p>
                         <p>Nombre acheté : 10</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -1999,7 +1764,7 @@ select {
                         <p>les bases solides</p>
                         <p>Nombre acheté : 5</p>
                         <p>Prix : 4,500 FCFA</p>
-                        <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -2013,7 +1778,7 @@ select {
                         <p>Maths Licence 1.</p> 
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_11.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -2027,7 +1792,7 @@ select {
                         <p>une autre facette de l'ingénieur</p>
                         <p>Nombre acheté : 8</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_12.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -2041,7 +1806,7 @@ select {
                         <p>Bases solides de python</p>
                         <p>Nombre acheté : 6</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_13.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -2055,7 +1820,7 @@ select {
                         <p>le cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 7,000 FCFA</p>
-                        <a href="lien_vers_pdf_14.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -2069,12 +1834,12 @@ select {
                         <p>cours complet</p>
                         <p>Nombre acheté : 11</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_15.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
-    
             
+
             <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <img src="/image/demarrer avec windows 10.jpg" alt="Couverture PDF Titre 21" class="pdf-cover">
@@ -2082,7 +1847,7 @@ select {
                 <p>Tout sur le windows 10</p>
                 <p>Nombre acheté : 7</p>
                 <p>Prix : 8,000 FCFA</p>
-                <a href="lien_vers_pdf_21.pdf" class="btn btn-success">Acheter</a>
+                <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
             </div>
     </div>
     
@@ -2092,7 +1857,7 @@ select {
     <!-- Section À propos -->
     <section id="about" class="container py-5">
       <h2 class="text-center mb-5">À propos de nous</h2>
-      <p class="text-center">SkillsUp Burkina est une plateforme dédiée à l'apprentissage des compétences numériques. Notre mission est de former les professionnels de demain.</p>
+      <p class="text-center">Académie Virtuelle est une plateforme dédiée à l'apprentissage des compétences numériques. Notre mission est de former les professionnels de demain.</p>
       <p class="text-center">Nous croyons fermement que l'éducation est la clé pour libérer le potentiel de chaque individu.</p>
       <p class="text-center">Nos formateurs sont des experts dans leurs domaines, apportant une richesse d'expérience pratique à chaque session.</p>
       <p class="text-center">Nous offrons une variété de cours, allant du développement web à la cybersécurité, pour répondre aux besoins du marché.</p>
@@ -2205,7 +1970,7 @@ select {
                 <img src="https://img.freepik.com/photos-premium/photo-etudiant-i-image-etudiant-i-etudiants-souriants-i-etudiant-universitaire-i-etudiants-collage_403587-2980.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1727481600&semt=ais_hybrid" alt="Photo de l'étudiant" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h5 class="card-title">Sophie BAMBA</h5>
-                    <p class="card-text">"Les formations en ligne sont flexibles et m'ont permis de progresser à mon rythme. Merci SkillsUp Burkina !"</p>
+                    <p class="card-text">"Les formations en ligne sont flexibles et m'ont permis de progresser à mon rythme. Merci Académie Virtuelle !"</p>
                     <div class="rating">⭐⭐⭐⭐⭐</div>
                 </div>
             </div>
@@ -2284,7 +2049,7 @@ select {
             <!-- Membre 1 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="image/kevin kiesse sanou.jpg" class="card-img-top" alt="Membre 1">
+                    <img src="/image/kevin kiesse sanou.jpg" class="card-img-top" alt="Membre 1">
                     <div class="card-body text-center">
                         <h5 class="card-title">KIESSE KEVIN</h5>
                         <p class="card-subtitle mb-2 text-muted">Développeur Web</p>
@@ -2328,7 +2093,7 @@ select {
             <p><i class="fas fa-users"></i> Visiteurs : <span id="nombre-total-visiteurs">30254</span></p>
             <p><i class="fas fa-user-clock"></i> En ligne : <span id="nombre-visiteurs-en-ligne">168</span></p>
         </div>
-        <p>&copy; 2024 SkillsUp Burkina. Tous droits réservés.</p>
+        <p>&copy; 2024 Académie Virtuelle. Tous droits réservés.</p>
     </footer>
 <!-- Modal pour la lecture de la vidéo -->
 <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
@@ -2358,105 +2123,7 @@ select {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-
-<script>
-    function generateUUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    }
-
-    function getDeviceId() {
-        var deviceId = localStorage.getItem('deviceId');
-        if (!deviceId) {
-            deviceId = generateUUID();
-            localStorage.setItem('deviceId', deviceId);
-        }
-        return deviceId;
-    }
-
-    function checkLoginStatus() {
-        var userId = localStorage.getItem('userId');
-        var password = localStorage.getItem('password');
-        var expiry = localStorage.getItem('loginExpiry');
-
-        if (userId && password && expiry) {
-            var now = new Date().getTime();
-            if (now < expiry) {
-                document.getElementById('username').value = userId;
-                document.getElementById('password').value = password;
-                document.getElementById('message').innerHTML = "Vous êtes déjà connecté.";
-                setTimeout(function() {
-                    window.location.href = "/profil%20utilisateur.html";
-                }, 2000);
-            }
-        }
-    }
-
-    checkLoginStatus();
-
-    function login() {
-        var userId = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var rememberMe = document.getElementById('rememberMe').checked;
-        var messageDiv = document.getElementById('message');
-
-        var deviceId = getDeviceId();
-
-        var data = {
-            userId: userId,
-            password: password,
-            rememberMe: rememberMe,
-            deviceId: deviceId
-        };
-
-        fetch('https://script.google.com/macros/s/AKfycbwLYKG9J6bvoyaMElfRNPRBISwgYLbdo_JmdvxDCEcwChbHQY2RZc5OU2R9EeDCu7c/exec', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {             
-            if (result.success) {
-                messageDiv.style.color = "green";
-                messageDiv.innerHTML = result.message + '<br>Nombre d\'appareils connectés : ' + result.devices;
-
-                if (rememberMe) {
-                    var now = new Date();
-                    var expiryTime = now.getTime() + (24 * 60 * 60 * 1000); 
-                    localStorage.setItem('userId', userId);
-                    localStorage.setItem('password', password);
-                    localStorage.setItem('loginExpiry', expiryTime);
-                }
-
-                setTimeout(function() {
-                    window.location.href = "/page%20etudiant.html";
-                }, 2000);
-            } else {
-                messageDiv.style.color = "red";
-                messageDiv.innerHTML = result.message;
-            }
-        })
-        .catch(error => {
-            messageDiv.style.color = "red";
-            messageDiv.innerHTML = "Une erreur est survenue lors de la connexion.";
-        });
-    }
-
-    document.getElementById('togglePassword').addEventListener('click', function () {
-    const passwordInput = document.getElementById('password');
-    const toggleButton = this;
-
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleButton.textContent = 'Masquer';
-    } else {
-        passwordInput.type = 'password';
-        toggleButton.textContent = 'Afficher';
-    }
-});
-
-</script>
+   
 <script>
     // Afficher le bouton lorsque l'utilisateur fait défiler vers le bas
 window.onscroll = function() {
@@ -2589,62 +2256,6 @@ setInterval(function() {
             button.textContent = 'Voir plus de documents';
         }
     }
-   
-        // Affiche le modal de connexion
-        document.getElementById("loginButton").addEventListener("click", function(event) {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
-            document.getElementById("loginModal").style.display = "block"; // Affiche le modal
-            document.querySelector(".modal-content").classList.add("show"); // Ajoute la classe pour l'animation de rotation
-        });
-
-        // Ferme le modal de connexion
-        document.getElementById("closeLoginButton").addEventListener("click", function() {
-            document.getElementById("loginModal").style.display = "none"; // Masque le modal
-            document.querySelector(".modal-content").classList.remove("show"); // Retire la classe d'animation
-        });
-
-        // Fonction pour afficher le modal d'inscription lorsque l'utilisateur clique sur le lien dans le modal de connexion
-        document.getElementById("registerButtonInLogin").addEventListener("click", function(event) {
-            event.preventDefault();
-            document.getElementById("loginModal").style.display = "none"; // Masque le modal de connexion
-            document.getElementById("registrationModal").style.display = "block"; // Affiche le modal d'inscription
-        });
-
-        // Affiche le modal d'inscription
-        document.getElementById("registerButton").addEventListener("click", function(event) {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
-            document.getElementById("registrationModal").style.display = "block"; // Affiche le modal
-        });
-
-        // Ferme le modal d'inscription
-        document.getElementById("closeRegisterButton").addEventListener("click", function() {
-            document.getElementById("registrationModal").style.display = "none"; // Masque le modal
-        });
-
-        // Ferme le modal de vidéo
-        document.getElementById("closeVideoButton").addEventListener("click", function() {
-            document.getElementById("videoModal").style.display = "none"; // Masque le modal
-        });
-
-        // Ferme le modal de connexion ou d'inscription si l'utilisateur clique en dehors de la boîte de dialogue
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("loginModal")) {
-                document.getElementById("loginModal").style.display = "none"; // Masque le modal
-            }
-            if (event.target == document.getElementById("registrationModal")) {
-                document.getElementById("registrationModal").style.display = "none"; // Masque le modal
-            }
-            if (event.target == document.getElementById("videoModal")) {
-                document.getElementById("videoModal").style.display = "none"; // Masque le modal
-            }
-        };
-
-        // Empêche la fermeture du modal lorsqu'on clique à l'intérieur
-        document.querySelectorAll('.modal-content').forEach(function(content) {
-            content.addEventListener('click', function(event) {
-                event.stopPropagation(); // Empêche l'événement de propagation
-            });
-        });
 
         // Fonction pour afficher la vidéo dans le modal
         document.addEventListener('DOMContentLoaded', function () {
@@ -2677,78 +2288,6 @@ setInterval(function() {
                 videoModal.style.display = "none"; // Masque le modal
             });
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-    let currentStep = 0;
-    const steps = document.querySelectorAll('.form-step');
-    const nextButtons = document.querySelectorAll('.next');
-    const prevButtons = document.querySelectorAll('.prev');
-    const progressBar = document.getElementById('progressBar');
-
-    // Affiche le premier pas
-    steps[currentStep].style.display = 'block';
-    updateProgressBar();
-
-    nextButtons.forEach((button) => {
-        button.addEventListener('click', function () {
-            if (validateStep(currentStep)) {
-                steps[currentStep].style.display = 'none'; // Masquer l'étape actuelle
-                currentStep++;
-                steps[currentStep].style.display = 'block'; // Afficher la prochaine étape
-                updateProgressBar(); // Met à jour la barre de progression
-            } else {
-                alert("Veuillez remplir tous les champs requis.");
-            }
-        });
-    });
-
-    prevButtons.forEach((button) => {
-        button.addEventListener('click', function () {
-            steps[currentStep].style.display = 'none'; // Masquer l'étape actuelle
-            currentStep--;
-            steps[currentStep].style.display = 'block'; // Afficher l'étape précédente
-            updateProgressBar(); // Met à jour la barre de progression
-        });
-    });
-
-    // Vérifie si tous les champs de l'étape actuelle sont remplis
-    function validateStep(stepIndex) {
-        const inputs = steps[stepIndex].querySelectorAll('input[required], select[required]');
-        for (let input of inputs) {
-            if (!input.value) {
-                return false; // Si un champ est vide, retourner false
-            }
-        }
-        return true; // Tous les champs sont remplis
-    }
-
-    // Met à jour la barre de progression
-    function updateProgressBar() {
-        const totalSteps = steps.length;
-        const percentage = ((currentStep + 1) / totalSteps) * 100; // Calcule le pourcentage
-        progressBar.style.width = percentage + '%'; // Met à jour la largeur de la barre
-
-        // Change la couleur de la barre en fonction du pourcentage
-        if (percentage === 0) {
-            progressBar.style.backgroundColor = 'gray'; // Gris pour 0%
-        } else if (percentage <= 25) {
-            progressBar.style.backgroundColor = 'gray'; // Rouge pour 1-25%
-        } else if (percentage <= 50) {
-            progressBar.style.backgroundColor = 'orange'; // Orange pour 26-50%
-        } else if (percentage <= 75) {
-            progressBar.style.backgroundColor = 'yellow'; // Jaune pour 51-75%
-        } else {
-            progressBar.style.backgroundColor = 'green'; // Vert pour 76-100%
-        }
-    }
-
-    // Soumission du formulaire
-    document.getElementById('registrationForm').addEventListener('submit', function (event) {
-        event.preventDefault(); // Empêche le comportement par défaut du formulaire
-        steps.forEach(step => step.style.display = 'none'); // Masquer toutes les étapes
-        document.getElementById('thankYouMessage').style.display = 'block'; // Afficher le message de remerciement
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function () {
     // Vérifie si l'utilisateur a déjà visité la page
@@ -2784,7 +2323,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('welcomeModal').style.display = 'none';
         // Ici, tu peux décider de rester sur la page ou rediriger vers une autre section
         // Par exemple, rester sur la page d'accueil ou aller à une section spécifique
-        window.location.href = "#about"; // Change "#about" par l'ID de la section souhaitée
+        window.location.href = "#cours"; // Change "#about" par l'ID de la section souhaitée
     });
 });
 
@@ -2823,35 +2362,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert("Capture d'écran impossible sur ce site.");
             }
         });
-
-        document.getElementById('editProfileButton').addEventListener('click', function() {
-    document.getElementById('userName').disabled = false;
-    document.getElementById('userEmail').disabled = false;
-    document.getElementById('userPhone').disabled = false;
-    document.getElementById('userCountry').disabled = false;
-    document.getElementById('saveProfileButton').style.display = 'inline-block';
-    this.style.display = 'none';
-});
-
-// Simuler le chargement des informations utilisateur depuis Google Sheets
-function loadUserProfile() {
-    document.getElementById('profileImageDisplay').src = "images/logo université virtuelle.png"; // Remplacez par la valeur réelle
-    document.getElementById('userName').value = "Jean Dupont"; // Remplacez par la valeur réelle
-    document.getElementById('userEmail').value = "jean.dupont@example.com"; // Remplacez par la valeur réelle
-    document.getElementById('userPhone').value = "+226 123 456 789"; // Remplacez par la valeur réelle
-    document.getElementById('userCountry').value = "Burkina Faso"; // Remplacez par la valeur réelle
-    
-}
-
-// Appeler la fonction pour charger le profil lors du chargement de la page
-loadUserProfile();
-
-document.querySelector('.nav-link[href="/profil%20utilisateur.html"]').addEventListener('click', function(event) {
-    event.preventDefault(); // Empêche le comportement par défaut du lien
-    document.getElementById('userProfile').style.display = 'block'; // Affiche la section du profil
-    window.scrollTo(0, document.getElementById('userProfile').offsetTop); // Fais défiler jusqu'à la section
-});
-
     </script>
      <script src="script.js"></script>
      <script>
