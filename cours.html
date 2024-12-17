@@ -3,776 +3,1890 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nos Cours - Académie Virtuelle</title>
+    <title>Académie Virtuelle</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
-        body {
-            background-color: #f4f4f9;
-            font-family: Arial, sans-serif;
-        }
-
-        .course-section {
-            padding: 50px 0;
-        }
-
-        .course-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .btn-outline-primary {
-            color: #f58c00;
-            border-color: #f58c00;
-        }
-
-        .btn-outline-primary:hover {
-            background-color: #f58c00;
-            color: #fff;
-        }
-
-        .text-center h2 {
-            color: #333;
-            font-weight: bold;
+        .flag-icon {
+            margin-right: 8px;
         }
     </style>
+    <style>
+        .scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance par rapport au bas de la page */
+    right: 20px; /* Distance par rapport à la droite de la page */
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 15px; /* Espacement intérieur */
+    cursor: pointer; /* Changer le curseur au survol */
+    display: none; /* Masquer par défaut */
+    z-index: 1000; /* S'assurer que le bouton est au-dessus des autres éléments */
+    transition: background-color 0.3s; /* Transition pour le changement de couleur */
+}
+.scroll-to-top i {
+    margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+    </style>
+<style>
+
+/* Style de la section des témoignages */
+.temoignages {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #003366;
+}
+
+.temoignages-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.temoignage-item {
+    background-color: #003366;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 15px;
+}
+
+.temoignage-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+.card {
+    transition: transform 0.2s; /* Animation de transformation */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+
+.rating {
+    font-size: 1.5em;
+    color: #003366; /* Couleur dorée pour les étoiles */
+}
+
+.visitors-info {
+        display: flex;
+        gap: 20px; /* Espace entre les éléments */
+        align-items: center;
+    }
+
+    .visitors-info p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .visitors-info i {
+        margin-right: 8px; /* Espace entre l'icône et le texte */
+    }
+    /* Style pour les vidéos avec une bordure colorée */
+    video {
+        border: 3px solid  #f58c00; /* Remplacez #3498db par la couleur de votre choix */
+        border-radius: 10px; /* Optionnel : pour arrondir les coins */
+    }
+
+    /* Style pour la vidéo dans la modale */
+    #modalVideo {
+        border: 3px solid #e74c3c; /* Une couleur différente pour la vidéo en plein écran */
+        border-radius: 8px; /* Optionnel : pour arrondir les coins */
+    }
+
+
+    .close {
+        color: #d10000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: rgb(245, 6, 6);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Animation d'apparition */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    
+    /* Style des modales */
+    .modal {
+        display: none; /* Masqué par défaut */
+        position: fixed; /* Reste au même endroit */
+        z-index: 1; /* Au-dessus du contenu */
+        left: 0;
+        top: 0;
+        width: 100%; /* Plein écran */
+        height: 100%; /* Plein écran */
+        overflow: auto; /* Ajout de défilement si nécessaire */
+        background-color: rgba(0, 0, 0, 0.5); /* Fond noir transparent */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Centré */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%; /* Largeur */
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        animation: rotateIn 0.5s; /* Animation de rotation */
+    }
+
+    @keyframes rotateIn {
+        from {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+        to {
+            transform: rotateY(0);
+            opacity: 1;
+        }
+    }
+    .modal-content {
+    animation: popin 0.5s ease;
+}
+
+@keyframes popin {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+#progressContainer {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.4s ease;
+}
+#progressBar {
+    transition: width 0.3s ease-in-out;
+}
+
+.select-country {
+    display: flex;
+    align-items: center;
+}
+
+.select-country img {
+    width: 24px;
+    height: auto;
+    margin-right: 8px;
+}
+select {
+    font-family: "Arial", sans-serif; /* Changez la police si nécessaire */
+    font-size: 16px;
+}
+
+        
+       
+    #pdfStore {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    
+    .pdf-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+    
+    .pdf-item h3 {
+        margin: 0 0 10px 0;
+    }
+    
+    .pdf-item p {
+        margin: 5px 0;
+    }
+    
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    
+    .btn-success:hover {
+        background-color:  #f58c00;
+    }
+
+    .pdf-cover {
+    width: 90%; /* Ajustez la largeur selon vos besoins */
+    height: auto; /* Maintient le rapport d'aspect */
+    border-radius: 50px; /* Arrondir les coins de l'image */
+    margin-bottom: 1px; /* Espacement entre l'image et le texte */
+}
+.card {
+    transition: transform 0.2s; /* Animation de transformation */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1; /* Au-dessus de tout */
+    left: 0;
+    top: 0;
+    width: 100%; /* Plein écran */
+    height: 100%; /* Plein écran */
+    overflow: auto; /* Si besoin de faire défiler */
+    background-color: rgba(0, 0, 0, 0.4); /* Fond noir transparent */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% du haut et centré */
+    padding: 20px;
+    border: 1px solid #e10303;
+    width: 100%; /* Largeur de 80% */
+}
+
+.close {
+    color:  #f58c00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color:  #f58c00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+        /* Styles pour le modal de confirmation */
+        .modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid  #f58c00;
+    width: 90%;
+    text-align: center;
+}
+
+.close {
+    color:  #f58c00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(212, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Couleurs ajustées pour correspondre au logo */
+
+/* Bannière défilante */
+.banner-container {
+    background-color: #003366; /* Bleu vif correspondant au fond du logo */
+    color: #ffffff; /* Texte blanc pour le contraste */
+}
+
+/* Boutons */
+.scroll-to-top {
+    background-color: #f58c00; /* Orange vif du logo */
+}
+
+.scroll-to-top:hover {
+    background-color: #cc7000; /* Version plus sombre de l'orange pour le survol */
+}
+
+.btn-success {
+    background-color: #f58c00; /* Orange vif pour les boutons */
+}
+
+.btn-success:hover {
+    background-color: #cc7000; /* Orange plus sombre au survol */
+}
+
+/* Témoignages */
+.temoignages {
+    background-color: #003366; /* Bleu vif */
+    border-radius: 45px;
+}
+
+.rating {
+    color: #f58c00; /* Orange vif pour les étoiles */
+    border-radius: 20px;
+}
+
+/* Modales et contenu */
+.modal-content {
+    background-color: #003366; /* Arrière-plan bleu pour correspondre au logo */
+    color: #ffffff; /* Texte blanc pour contraste */
+}
+
+/* Progress Bar */
+#progressBar {
+    background-color: #f58c00; /* Orange vif du logo */
+}
+
+/* Autres ajustements d'éléments */
+.card:hover {
+    border-color: #002466; /* Orange vif pour le survol */
+    border-radius: 20px;
+}
+
+.pdf-item {
+    border-color: #f58c00; /* Bordures oranges pour les cartes PDF */
+}
+
+
+.loginButton {
+    background: #f58c00;
+    color: rgb(249, 247, 244);
+    margin: auto;
+    padding: 10px;
+    border: 2px solid  #f4f4f7;
+    border-radius: 20px;
+}
+
+</style>
+<style>
+    /* Conteneur pour l'icône de chargement */
+    .loading-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centre l'icône sur la page */
+        z-index: 9999; /* Assure que l'icône est au-dessus des autres contenus */
+        
+    }
+
+    /* Animation de rotation de l'icône */
+    .loading-icon {
+            width: 100%; /* Ajustez la taille selon vos besoins */
+            height: auto; /* Garde les proportions de l'image */
+            animation: spin 5s linear infinite; /* Animation de rotation */
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg); /* Commence à 0 degrés */
+        }
+        100% {
+            transform: rotate(360deg); /* Finit à 360 degrés */
+        }
+    }
+</style>
 </head>
 <body class="fade-in">
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#accueil">
-                    <img src="images/logo université virtuelle.png" alt="Académie Virtuelle" style="height: 50px;">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">
-                                <i class="fas fa-home"></i> Accueil
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cours.html">
-                                <i class="fas fa-book"></i> Cours
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="boutiquepdf.html">
-                                <i class="fas fa-concierge-bell"></i> Boutique PDF
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    </header>
+    <div class="loading-container">
+        <img src="images/logo université virtuelle.png" alt="Icône de chargement" class="loading-icon">
+    </div>
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#accueil">
+            <img src="images/logo université virtuelle.png" alt="Académie Virtuelle" style="height: 50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#accueil">
+                        <i class="fas fa-home"></i> Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cours.html">
+                        <i class="fas fa-book"></i> Cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="boutiquepdf.html">
+                        <i class="fas fa-concierge-bell"></i> Boutique PDF
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#blog">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">
+                        <i class="fas fa-info-circle"></i> À propos
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonials">
+                        <i class="fas fa-users"></i> Témoignages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                </li>
+                <br>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" href="inscription et connexion.html">
+                        <i class="fas fa-sign-in-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- Modal de Confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeConfirmationButton">&times;</span>
+        <h2>Confirmation</h2>
+        <p>Êtes-vous prêt à voir ce contenu ?</p>
+        <button id="confirmYes" class="btn btn-primary">Oui</button>
+        <br>
+        <button id="confirmNo" class="btn btn-secondary">Non</button>
+    </div>
+</div>
 
-    <main class="container my-5">
-        <section id="courses" class="row">
-            <!-- Section des cours -->
-            <!-- Insérez ici vos cartes de cours existantes -->
+
+
+    <!-- Modale de vidéo -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeVideoButton">&times;</span>
+            <h2 id="videoModalLabel">Titre de la vidéo</h2>
+            <video id="videoPlayer" controls>
+                <source src="" type="video/mp4">
+                Votre navigateur ne prend pas en charge la vidéo.
+            </video>
+        </div>
+    </div>
+
+    
+    <!-- Section d'accueil -->
+ <section id="cours" class="container py-5">
+        <h2 class="text-center mb-5">Nos Cours Populaires</h2>
+        <div class="row">
             <!-- Cours 1 -->
             <div class="col-md-4">
-                <div class="card course-card mb-4">
-                    <video class="card-img-top" controls>
-                        <source src="vidéos/developpement web.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Développement Web</h5>
-                        <p class="card-text">Apprenez à créer des sites web interactifs et modernes en utilisant HTML, CSS, JavaScript et les frameworks populaires.</p>
-                        <a href="cours_developpement_web.html" class="btn btn-outline-primary">En savoir plus</a>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/developpement web.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Apprenez à créer des sites web interactifs et modernes en utilisant HTML, CSS, JavaScript et les frameworks populaires.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction au développement web</li>
+                            <li>2. HTML & CSS</li>
+                            <li>3. JavaScript pour l'interactivité</li>
+                            <li>4. Frameworks Front-end : Bootstrap et React</li>
+                            <li>5. Publication et maintenance de sites web</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 120</li>
+                        </ul>
+                        <a href="" class="btn btn-outline-primary">SUIVRE LE COURS COMPLET</a>
                     </div>
                 </div>
             </div>
             <!-- Cours 2 -->
             <div class="col-md-4">
-                <div class="card course-card mb-4">
-                    <video class="card-img-top" controls>
-                        <source src="videos/adobe_photoshop_presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Adobe Photoshop</h5>
-                        <p class="card-text">Maîtrisez les bases et les techniques avancées de la retouche photo et du design graphique avec Adobe Photoshop.</p>
-                        <a href="cours_adobe_photoshop.html" class="btn btn-outline-primary">En savoir plus</a>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/adobe photoshop presentation.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Maîtrisez les bases et les techniques avancées de la retouche photo et du design graphique avec Adobe Photoshop.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction à Photoshop</li>
+                            <li>2. Outils de base et de sélection</li>
+                            <li>3. Retouche photo avancée</li>
+                            <li>4. Création de montages et d'illustrations</li>
+                            <li>5. Exportation pour le web et l'impression</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 90</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                     </div>
                 </div>
             </div>
             <!-- Cours 3 -->
             <div class="col-md-4">
-                <div class="card course-card mb-4">
-                    <video class="card-img-top" controls>
-                        <source src="videos/reseaux_sociaux_presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Réseaux Sociaux</h5>
-                        <p class="card-text">Apprenez à utiliser les réseaux sociaux pour la gestion de marque, le marketing et l'engagement communautaire.</p>
-                        <a href="cours_reseaux_sociaux.html" class="btn btn-outline-primary">En savoir plus</a>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/reseaux sociaux presentation.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Apprenez à utiliser les réseaux sociaux pour la gestion de marque, le marketing et l'engagement communautaire.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Comprendre les réseaux sociaux</li>
+                            <li>2. Créer une stratégie de contenu</li>
+                            <li>3. Publicité sur les réseaux sociaux</li>
+                            <li>4. Analyse des performances</li>
+                            <li>5. Gestion des crises et relations publiques</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 80</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                     </div>
                 </div>
             </div>
             <!-- Cours 4 -->
             <div class="col-md-4">
-                <div class="card course-card mb-4">
-                    <video class="card-img-top" controls>
-                        <source src="videos/python_presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Python</h5>
-                        <p class="card-text">Apprenez les bases de la programmation avec Python, un langage puissant et polyvalent pour le développement logiciel et l'analyse de données.</p>
-                        <a href="cours_python.html" class="btn btn-outline-primary">En savoir plus</a>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/python presentation.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Apprenez les bases de la programmation avec Python, un langage puissant et polyvalent pour le développement logiciel et l'analyse de données.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction à Python</li>
+                            <li>2. Syntaxe et structures de base</li>
+                            <li>3. Programmation orientée objet</li>
+                            <li>4. Bibliothèques populaires (Pandas, NumPy)</li>
+                            <li>5. Projets pratiques en Python</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 100</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                     </div>
                 </div>
             </div>
             <!-- Cours 5 -->
             <div class="col-md-4">
-                <div class="card course-card mb-4">
-                    <video class="card-img-top" controls>
-                        <source src="videos/cybersecurite_presentation.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
+                <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Cybersécurité</h5>
-                        <p class="card-text">Apprenez à protéger les systèmes informatiques contre les menaces et à assurer la sécurité des données.</p>
-                        <a href="cours_cybersecurite.html" class="btn btn-outline-primary">En savoir plus</a>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/cybersecurite presentation.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Apprenez à protéger les systèmes informatiques contre les menaces et à assurer la sécurité des données.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction à la cybersécurité</li>
+                            <li>2. Sécurité des réseaux</li>
+                            <li>3. Cryptographie</li>
+                            <li>4. Sécurité des applications web</li>
+                            <li>5. Réponse aux incidents et analyse des menaces</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 45 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix :Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 70</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
- <!-- Plus de cours -->
- <section id="more-courses" class="row">
-    <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-            <div class="card-body">
-                <h5 class="card-title">Marketing Digital</h5>
-                <video class="card-img-top" controls>
-                    <source src="/marketing_digital_pr%C3%A9sentation.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <p class="mt-3">Découvrez les stratégies et les outils du marketing numérique pour accroître la visibilité et l'engagement en ligne.</p>
-                <h6>Plan du cours :</h6>
-                <ul class="list-unstyled">
-                    <li>1. Introduction au marketing digital</li>
-                    <li>2. SEO & SEA</li>
-                    <li>3. Marketing de contenu</li>
-                    <li>4. Email marketing & automation</li>
-                    <li>5. Analyse des données et optimisation</li>
-                </ul>
-                <ul class="list-unstyled mt-3">
-                    <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
-                    <li><i class="fas fa-language"></i> Langue : Français</li>
-                    <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
-                    <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
-                </ul>
-                <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+            <!-- Cours 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Programmation C</h5>
+                        <video class="card-img-top" controls>
+                            <source src="vidéos/programmation c presentation.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                        <p class="mt-3">Apprenez les bases de la programmation en langage C, un langage de programmation fondamental pour comprendre les concepts informatiques et développer des applications performantes.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction au langage C</li>
+                            <li>2. Variables, types de données et opérateurs</li>
+                            <li>3. Structures de contrôle (boucles, conditions)</li>
+                            <li>4. Fonctions et gestion de la mémoire</li>
+                            <li>5. Structures de données et pointeurs</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : Gratuit</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 95</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+            
+           
+        </section>
+        <section>
+            <div id="more-courses" class="row d-none">
+                
+                  <!-- Cours 7 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Marketing Digital</h5>
+                        <img class="card-img-top" src="image/Marketing Digital.jpg" alt="CSS Avancé">
+                        <p class="mt-3">Découvrez les stratégies et les outils du marketing numérique pour accroître la visibilité et l'engagement en ligne.</p>
+                        <h6>Plan du cours :</h6>
+                        <ul class="list-unstyled">
+                            <li>1. Introduction au marketing digital</li>
+                            <li>2. SEO & SEA</li>
+                            <li>3. Marketing de contenu</li>
+                            <li>4. Email marketing & automation</li>
+                            <li>5. Analyse des données et optimisation</li>
+                        </ul>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                            <li><i class="fas fa-language"></i> Langue : Français</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                            <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        
+                <!-- Cours 8 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">CSS Avancé</h5>
+                            <img class="card-img-top" src="image/css avance cover.jpg" alt="CSS Avancé">
+                            <p class="mt-3">Perfectionnez vos compétences en CSS pour créer des mises en page réactives et des animations fluides, tout en explorant les techniques avancées.</p>
+                            <h6>Plan du cours :</h6>
+                            <ul class="list-unstyled">
+                                <li>1. Sélecteurs et spécificité avancés</li>
+                                <li>2. Flexbox et Grid Layout</li>
+                                <li>3. Animations et transitions CSS</li>
+                                <li>4. Préprocesseurs : SASS et LESS</li>
+                                <li>5. Optimisation des performances CSS</li>
+                            </ul>
+                            <ul class="list-unstyled mt-3">
+                                <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                                <li><i class="fas fa-language"></i> Langue : Français</li>
+                                <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
+                                <li><i class="fas fa-users"></i> Nombre de personnes formées : 85</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+                
 
-        <!-- Cours 8 -->
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">CSS Avancé</h5>
-                    <video class="card-img-top" controls>
-                        <source src="video_css_avance.mp4" type="video/mp4">
-                        Votre navigateur ne supporte pas la vidéo.
-                    </video>
-                    <p class="mt-3">Perfectionnez vos compétences en CSS pour créer des mises en page réactives et des animations fluides, tout en explorant les techniques avancées.</p>
+                    <h5 class="card-title">Design UX/UI</h5>
+                    <img class="card-img-top" src="image/design ux ui cover.jpg">
+                    <p class="mt-3">Découvrez les bases du design d'expérience utilisateur et d'interface utilisateur pour créer des applications et des sites web conviviaux.</p>
                     <h6>Plan du cours :</h6>
                     <ul class="list-unstyled">
-                        <li>1. Sélecteurs et spécificité avancés</li>
-                        <li>2. Flexbox et Grid Layout</li>
-                        <li>3. Animations et transitions CSS</li>
-                        <li>4. Préprocesseurs : SASS et LESS</li>
-                        <li>5. Optimisation des performances CSS</li>
+                        <li>1. Principes de l'UX</li>
+                        <li>2. Conception d'interfaces</li>
+                        <li>3. Prototypage et wireframing</li>
+                        <li>4. Test utilisateur</li>
+                        <li>5. Outils de design (Figma, Adobe XD)</li>
                     </ul>
                     <ul class="list-unstyled mt-3">
-                        <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                        <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
                         <li><i class="fas fa-language"></i> Langue : Français</li>
                         <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
-                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 85</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
                     </ul>
                     <a href="#" class="btn btn-outline-primary">En savoir plus</a>
                 </div>
             </div>
-       </div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Design UX/UI</h5>
-            <video class="card-img-top" controls>
-                <source src="/Design_UX_UI_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Découvrez les bases du design d'expérience utilisateur et d'interface utilisateur pour créer des applications et des sites web conviviaux.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Principes de l'UX</li>
-                <li>2. Conception d'interfaces</li>
-                <li>3. Prototypage et wireframing</li>
-                <li>4. Test utilisateur</li>
-                <li>5. Outils de design (Figma, Adobe XD)</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">JavaScript Avancé</h5>
-            <video class="card-img-top" controls>
-                <source src="/JavaScript_Avance_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Maîtrisez les concepts avancés de JavaScript, y compris la programmation asynchrone, les modules, les API et les frameworks front-end.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Programmation asynchrone</li>
-                <li>2. Modules et importation</li>
-                <li>3. API et services web</li>
-                <li>4. Frameworks front-end (React, Vue.js)</li>
-                <li>5. Optimisation du code JavaScript</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">JavaScript Avancé</h5>
+                    <img class="card-img-top" src="image/javascrypt avance cover.jpg">
+                    <p class="mt-3">Maîtrisez les concepts avancés de JavaScript, y compris la programmation asynchrone, les modules, les API et les frameworks front-end.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Programmation asynchrone</li>
+                        <li>2. Modules et importation</li>
+                        <li>3. API et services web</li>
+                        <li>4. Frameworks front-end (React, Vue.js)</li>
+                        <li>5. Optimisation du code JavaScript</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">SEO (Search Engine Optimization)</h5>
-            <video class="card-img-top" controls>
-                <source src="/SEO_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Optimisez vos sites web pour les moteurs de recherche afin d'améliorer leur visibilité et attirer plus de trafic.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction au SEO</li>
-                <li>2. Optimisation on-page</li>
-                <li>3. Optimisation off-page</li>
-                <li>4. Analyse des performances SEO</li>
-                <li>5. SEO local et mobile</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">SEO (Search Engine Optimization)</h5>
+                    <img class="card-img-top" src="image/seo cover.jpg">
+                    <p class="mt-3">Optimisez vos sites web pour les moteurs de recherche afin d'améliorer leur visibilité et attirer plus de trafic.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction au SEO</li>
+                        <li>2. Optimisation on-page</li>
+                        <li>3. Optimisation off-page</li>
+                        <li>4. Analyse des performances SEO</li>
+                        <li>5. SEO local et mobile</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Développement Mobile avec Flutter</h5>
-            <video class="card-img-top" controls>
-                <source src="/Developpement_Mobile_Flutter_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à créer des applications mobiles multiplateformes avec Flutter et Dart, en utilisant une seule base de code pour Android et iOS.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction à Flutter</li>
-                <li>2. Widgets de base</li>
-                <li>3. Gestion de l'état</li>
-                <li>4. Accès aux APIs et services web</li>
-                <li>5. Déploiement sur Android et iOS</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 45</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Développement Mobile avec Flutter</h5>
+                    <img class="card-img-top" src="image/Développement Mobile avec Flutter.jpg">
+                    <p class="mt-3">Apprenez à créer des applications mobiles multiplateformes avec Flutter et Dart, en utilisant une seule base de code pour Android et iOS.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction à Flutter</li>
+                        <li>2. Widgets de base</li>
+                        <li>3. Gestion de l'état</li>
+                        <li>4. Accès aux APIs et services web</li>
+                        <li>5. Déploiement sur Android et iOS</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 45</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Big Data et Data Science</h5>
-            <video class="card-img-top" controls>
-                <source src="/Big_Data_Data_Science_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Explorez les concepts de Big Data et apprenez les techniques de la Data Science pour extraire des informations utiles à partir de données volumineuses.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction au Big Data</li>
-                <li>2. Collecte et stockage des données</li>
-                <li>3. Analyse des données avec Python</li>
-                <li>4. Apprentissage automatique (Machine Learning)</li>
-                <li>5. Visualisation des données</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 50 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 90 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 30</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Big Data et Data Science</h5>
+                    <img class="card-img-top" src="image/Big Data et Data Science.jpg">
+                    <p class="mt-3">Explorez les concepts de Big Data et apprenez les techniques de la Data Science pour extraire des informations utiles à partir de données volumineuses.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction au Big Data</li>
+                        <li>2. Collecte et stockage des données</li>
+                        <li>3. Analyse des données avec Python</li>
+                        <li>4. Apprentissage automatique (Machine Learning)</li>
+                        <li>5. Visualisation des données</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 50 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 90 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 30</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Réseaux Informatiques</h5>
-            <video class="card-img-top" controls>
-                <source src="/Reseaux_Informatiques_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez les concepts de base des réseaux informatiques et les compétences nécessaires pour administrer des réseaux d'entreprise.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction aux réseaux</li>
-                <li>2. Protocoles de communication</li>
-                <li>3. Topologies de réseaux</li>
-                <li>4. Administration des réseaux</li>
-                <li>5. Sécurité des réseaux</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 55</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Réseaux Informatiques</h5>
+                    <img class="card-img-top" src="image/Réseaux Informatiques.jpg">
+                    <p class="mt-3">Apprenez les concepts de base des réseaux informatiques et les compétences nécessaires pour administrer des réseaux d'entreprise.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction aux réseaux</li>
+                        <li>2. Protocoles de communication</li>
+                        <li>3. Topologies de réseaux</li>
+                        <li>4. Administration des réseaux</li>
+                        <li>5. Sécurité des réseaux</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 55</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Cuisine et Arts Culinaires</h5>
-            <video class="card-img-top" controls>
-                <source src="/Cuisine_Arts_Culinaires_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez les bases de la cuisine, les techniques culinaires et les recettes du monde pour préparer des plats savoureux.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Techniques de base en cuisine</li>
-                <li>2. Cuisine traditionnelle africaine</li>
-                <li>3. Cuisine internationale</li>
-                <li>4. Pâtisserie et boulangerie</li>
-                <li>5. Présentation et décoration des plats</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 40 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Cuisine et Arts Culinaires</h5>
+                    <img class="card-img-top" src="image/Cuisine et Arts Culinaires.jpg">
+                    <p class="mt-3">Apprenez les bases de la cuisine, les techniques culinaires et les recettes du monde pour préparer des plats savoureux.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Techniques de base en cuisine</li>
+                        <li>2. Cuisine traditionnelle africaine</li>
+                        <li>3. Cuisine internationale</li>
+                        <li>4. Pâtisserie et boulangerie</li>
+                        <li>5. Présentation et décoration des plats</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 40 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Installation de Systèmes Solaires</h5>
-            <video class="card-img-top" controls>
-                <source src="/Installation_Solaire_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Maîtrisez les compétences nécessaires pour installer, entretenir et optimiser les systèmes d'énergie solaire pour les habitations et les entreprises.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction aux énergies renouvelables</li>
-                <li>2. Composants d'un système solaire</li>
-                <li>3. Installation de panneaux solaires</li>
-                <li>4. Maintenance et optimisation</li>
-                <li>5. Études de cas pratiques</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Installation de Systèmes Solaires</h5>
+                    <img class="card-img-top" src="image/Installation de Systèmes Solaires.jpg">
+                    <p class="mt-3">Maîtrisez les compétences nécessaires pour installer, entretenir et optimiser les systèmes d'énergie solaire pour les habitations et les entreprises.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction aux énergies renouvelables</li>
+                        <li>2. Composants d'un système solaire</li>
+                        <li>3. Installation de panneaux solaires</li>
+                        <li>4. Maintenance et optimisation</li>
+                        <li>5. Études de cas pratiques</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Community Management</h5>
-            <video class="card-img-top" controls>
-                <source src="/Community_Management_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à gérer et animer des communautés en ligne, à créer du contenu engageant et à optimiser la présence sur les réseaux sociaux.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction au community management</li>
-                <li>2. Création de contenu pour les réseaux sociaux</li>
-                <li>3. Gestion de crise en ligne</li>
-                <li>4. Analyse des performances</li>
-                <li>5. Outils de gestion des réseaux sociaux</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 75</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Community Management</h5>
+                    <img class="card-img-top" src="image/Community Management.jpg">
+                    <p class="mt-3">Apprenez à gérer et animer des communautés en ligne, à créer du contenu engageant et à optimiser la présence sur les réseaux sociaux.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction au community management</li>
+                        <li>2. Création de contenu pour les réseaux sociaux</li>
+                        <li>3. Gestion de crise en ligne</li>
+                        <li>4. Analyse des performances</li>
+                        <li>5. Outils de gestion des réseaux sociaux</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 20 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 75</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Gestion d'Entreprise</h5>
-            <video class="card-img-top" controls>
-                <source src="/Gestion_Entreprise_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Développez les compétences essentielles pour gérer efficacement une entreprise, y compris la finance, le marketing, et la gestion des ressources humaines.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction à la gestion d'entreprise</li>
-                <li>2. Comptabilité et finance de base</li>
-                <li>3. Marketing et vente</li>
-                <li>4. Gestion des ressources humaines</li>
-                <li>5. Stratégie et croissance</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 80 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion d'Entreprise</h5>
+                    <img class="card-img-top" src="image/Gestion d'Entreprise.jpg">
+                    <p class="mt-3">Développez les compétences essentielles pour gérer efficacement une entreprise, y compris la finance, le marketing, et la gestion des ressources humaines.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction à la gestion d'entreprise</li>
+                        <li>2. Comptabilité et finance de base</li>
+                        <li>3. Marketing et vente</li>
+                        <li>4. Gestion des ressources humaines</li>
+                        <li>5. Stratégie et croissance</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 80 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 60</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        
 
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Graphisme et Infographie</h5>
-            <video class="card-img-top" controls>
-                <source src="/Graphisme_Infographie_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à créer des visuels attractifs en utilisant les outils de graphisme modernes comme Photoshop, Illustrator, et InDesign.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction au design graphique</li>
-                <li>2. Utilisation de Photoshop</li>
-                <li>3. Création de logos avec Illustrator</li>
-                <li>4. Mise en page avec InDesign</li>
-                <li>5. Techniques avancées d'infographie</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 65 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 55</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Graphisme et Infographie</h5>
+                    <img class="card-img-top" src="image/Graphisme et Infographie.jpg">
+                    <p class="mt-3">Apprenez à créer des visuels attractifs en utilisant les outils de graphisme modernes comme Photoshop, Illustrator, et InDesign.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction au design graphique</li>
+                        <li>2. Utilisation de Photoshop</li>
+                        <li>3. Création de logos avec Illustrator</li>
+                        <li>4. Mise en page avec InDesign</li>
+                        <li>5. Techniques avancées d'infographie</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 65 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 55</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Électricité Bâtiment</h5>
-            <video class="card-img-top" controls>
-                <source src="/Electricite_Batiment_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Acquérez les compétences nécessaires pour l'installation et la maintenance des systèmes électriques dans les bâtiments résidentiels et commerciaux.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Principes de base de l'électricité</li>
-                <li>2. Câblage électrique et installation</li>
-                <li>3. Normes de sécurité électrique</li>
-                <li>4. Maintenance des installations</li>
-                <li>5. Dépannage des systèmes électriques</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 45</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Électricité Bâtiment</h5>
+                    <img class="card-img-top" src="image/Électricité Bâtiment.jpg">
+                    <p class="mt-3">Acquérez les compétences nécessaires pour l'installation et la maintenance des systèmes électriques dans les bâtiments résidentiels et commerciaux.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Principes de base de l'électricité</li>
+                        <li>2. Câblage électrique et installation</li>
+                        <li>3. Normes de sécurité électrique</li>
+                        <li>4. Maintenance des installations</li>
+                        <li>5. Dépannage des systèmes électriques</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 60 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 45</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Maintenance Informatique</h5>
-            <video class="card-img-top" controls>
-                <source src="/Maintenance_Informatique_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à diagnostiquer et réparer les problèmes matériels et logiciels, à installer des systèmes d'exploitation et à optimiser les performances des ordinateurs.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Diagnostic et dépannage de matériel</li>
-                <li>2. Maintenance logicielle</li>
-                <li>3. Installation et configuration de systèmes</li>
-                <li>4. Sécurité et protection des données</li>
-                <li>5. Réseaux informatiques de base</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 65</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Maintenance Informatique</h5>
+                    <img class="card-img-top" src="image/Maintenance Informatique.jpg">
+                    <p class="mt-3">Apprenez à diagnostiquer et réparer les problèmes matériels et logiciels, à installer des systèmes d'exploitation et à optimiser les performances des ordinateurs.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Diagnostic et dépannage de matériel</li>
+                        <li>2. Maintenance logicielle</li>
+                        <li>3. Installation et configuration de systèmes</li>
+                        <li>4. Sécurité et protection des données</li>
+                        <li>5. Réseaux informatiques de base</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 65</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Comptabilité et Finance</h5>
-            <video class="card-img-top" controls>
-                <source src="/Comptabilite_Finance_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez les bases de la comptabilité, la gestion financière, et l'analyse financière pour une meilleure gestion de vos finances personnelles ou d'entreprise.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction à la comptabilité</li>
-                <li>2. États financiers</li>
-                <li>3. Analyse financière</li>
-                <li>4. Budget et prévisions</li>
-                <li>5. Gestion des flux de trésorerie</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Comptabilité et Finance</h5>
+                    <img class="card-img-top" src="image/Comptabilité et Finance.jpg">
+                    <p class="mt-3">Apprenez les bases de la comptabilité, la gestion financière, et l'analyse financière pour une meilleure gestion de vos finances personnelles ou d'entreprise.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction à la comptabilité</li>
+                        <li>2. États financiers</li>
+                        <li>3. Analyse financière</li>
+                        <li>4. Budget et prévisions</li>
+                        <li>5. Gestion des flux de trésorerie</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 50 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Coiffure</h5>
+                    <img class="card-img-top" src="image/Coiffure.jpg">
+                    <p class="mt-3">Apprenez les techniques de coiffure, de la coupe au stylisme, en passant par les soins capillaires et les tendances modernes.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Techniques de coupe de cheveux</li>
+                        <li>2. Coloration et traitements capillaires</li>
+                        <li>3. Coiffures traditionnelles et modernes</li>
+                        <li>4. Entretien et soins des cheveux</li>
+                        <li>5. Conseils de style et de mode</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Pâtisserie</h5>
+                    <img class="card-img-top" src="image/Pâtisserie.jpg">
+                    <p class="mt-3">Découvrez l'art de la pâtisserie en apprenant à préparer des desserts, des gâteaux, et des viennoiseries délicieuses.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Techniques de base en pâtisserie</li>
+                        <li>2. Gâteaux classiques et modernes</li>
+                        <li>3. Pâtisseries traditionnelles africaines</li>
+                        <li>4. Chocolaterie et confiserie</li>
+                        <li>5. Décoration et présentation des desserts</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 45 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
+        </div>
 
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Coiffure</h5>
-            <video class="card-img-top" controls>
-                <source src="/Coiffure_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez les techniques de coiffure, de la coupe au stylisme, en passant par les soins capillaires et les tendances modernes.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Techniques de coupe de cheveux</li>
-                <li>2. Coloration et traitements capillaires</li>
-                <li>3. Coiffures traditionnelles et modernes</li>
-                <li>4. Entretien et soins des cheveux</li>
-                <li>5. Conseils de style et de mode</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Photographie et Vidéographie</h5>
+                    <img class="card-img-top" src="image/Photographie et Vidéographie.jpg">
+                    <p class="mt-3">Apprenez à capturer et à éditer des images et des vidéos, des bases de la photographie aux techniques avancées de production vidéo.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Techniques de photographie de base</li>
+                        <li>2. Éclairage et composition</li>
+                        <li>3. Édition et retouche d'images</li>
+                        <li>4. Techniques de tournage vidéo</li>
+                        <li>5. Montage et post-production</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Pâtisserie</h5>
-            <video class="card-img-top" controls>
-                <source src="/Patisserie_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Découvrez l'art de la pâtisserie en apprenant à préparer des desserts, des gâteaux, et des viennoiseries délicieuses.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Techniques de base en pâtisserie</li>
-                <li>2. Gâteaux classiques et modernes</li>
-                <li>3. Pâtisseries traditionnelles africaines</li>
-                <li>4. Chocolaterie et confiserie</li>
-                <li>5. Décoration et présentation des desserts</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 25 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 45 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Création de Contenu Numérique</h5>
+                    <img class="card-img-top" src="image/Création de Contenu Numérique.jpg">
+                    <p class="mt-3">Maîtrisez l'art de créer du contenu numérique engageant pour divers formats tels que les blogs, vidéos, et podcasts.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction à la création de contenu</li>
+                        <li>2. Écriture pour le web et blogging</li>
+                        <li>3. Création de vidéos et vlogs</li>
+                        <li>4. Production de podcasts</li>
+                        <li>5. Stratégies de distribution et de promotion</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Photographie et Vidéographie</h5>
-            <video class="card-img-top" controls>
-                <source src="/Photographie_Videographie_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à capturer et à éditer des images et des vidéos, des bases de la photographie aux techniques avancées de production vidéo.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Techniques de photographie de base</li>
-                <li>2. Éclairage et composition</li>
-                <li>3. Édition et retouche d'images</li>
-                <li>4. Techniques de tournage vidéo</li>
-                <li>5. Montage et post-production</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 35 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 40</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+        
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Gestion de Crise</h5>
+                    <img class="card-img-top" src="image/Gestion de Crise.jpg">
+                    <p class="mt-3">Apprenez à anticiper, gérer et résoudre les crises au sein des organisations, tout en protégeant la réputation et la continuité des activités.</p>
+                    <h6>Plan du cours :</h6>
+                    <ul class="list-unstyled">
+                        <li>1. Introduction à la gestion de crise</li>
+                        <li>2. Analyse des risques et préparation</li>
+                        <li>3. Communication de crise</li>
+                        <li>4. Gestion des parties prenantes</li>
+                        <li>5. Évaluation post-crise et amélioration continue</li>
+                    </ul>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
+                        <li><i class="fas fa-language"></i> Langue : Français</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
+                        <li><i class="fas fa-users"></i> Nombre de personnes formées : 30</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Création de Contenu Numérique</h5>
-            <video class="card-img-top" controls>
-                <source src="/Creation_Contenu_Numerique_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Maîtrisez l'art de créer du contenu numérique engageant pour divers formats tels que les blogs, vidéos, et podcasts.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction à la création de contenu</li>
-                <li>2. Écriture pour le web et blogging</li>
-                <li>3. Création de vidéos et vlogs</li>
-                <li>4. Production de podcasts</li>
-                <li>5. Stratégies de distribution et de promotion</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 30 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 55 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 50</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
         </div>
+          <!-- Bouton pour afficher plus de cours -->
+    <div class="text-center mt-4">
+        <button id="show-more-btn" class="btn btn-primary">Voir plus de cours</button>
     </div>
-</div>
-
-<div class="col-md-4">
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <h5 class="card-title">Gestion de Crise</h5>
-            <video class="card-img-top" controls>
-                <source src="/Gestion_de_Crise_Presentation.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p class="mt-3">Apprenez à anticiper, gérer et résoudre les crises au sein des organisations, tout en protégeant la réputation et la continuité des activités.</p>
-            <h6>Plan du cours :</h6>
-            <ul class="list-unstyled">
-                <li>1. Introduction à la gestion de crise</li>
-                <li>2. Analyse des risques et préparation</li>
-                <li>3. Communication de crise</li>
-                <li>4. Gestion des parties prenantes</li>
-                <li>5. Évaluation post-crise et amélioration continue</li>
-            </ul>
-            <ul class="list-unstyled mt-3">
-                <li><i class="fas fa-clock"></i> Durée : 40 heures</li>
-                <li><i class="fas fa-language"></i> Langue : Français</li>
-                <li><i class="fas fa-money-bill-wave"></i> Prix : 70 000 FCFA</li>
-                <li><i class="fas fa-users"></i> Nombre de personnes formées : 30</li>
-            </ul>
-            <a href="#" class="btn btn-outline-primary">En savoir plus</a>
-        </div>
-    </div>
-</div>
-</div>
-    <!-- Insérez ici les cartes pour plus de cours -->
     </section>
-         <!-- Bouton "Voir plus de cours" -->
+
+
+    </section>
+    <section id="pdfStore" class="container py-5">
+        <h2 class="text-center mb-5">Boutique PDF</h2>
+        <div class="row">
+            <!-- PDF 2 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="image/Apprendre a programmer avec python.jpg" alt="Couverture PDF Titre 2" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Apprendre à programmer avec Python</h3>
+                        <p>Devenir un pro.</p>
+                        <p>Nombre acheté : 18</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 3 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/le grand livre de la vente.jpg" alt="Couverture PDF Titre 3" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Le Grand livre de la Vente</h3>
+                        <p>Vendez plus</p>
+                        <p>Nombre acheté : 302</p>
+                        <p>Prix : 6,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 4 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/Apprendre le C++.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Apprendre le C++</h3>
+                        <p>Techniques pas à pas sur le C++.</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 5 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/Introduction a l'algorithmique.jpg" alt="Couverture PDF Titre 5" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Introduction à l'algorithmique</h3>
+                        <p>Acquerir de base solide.</p>
+                        <p>Nombre acheté : 10</p>
+                        <p>Prix : 2,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- PDF 6 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/créez votre site web.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <div class="card-body">
+                        <h3>Créez votre site web: Guide complet</h3>
+                        <p>Apprenez à créer votre site web.</p>
+                        <p>Nombre acheté : 9</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                    </div>
+                </div>
+            </div>
+   
+
+
+
+            <div class="more-pdfs" style="display: none;">
+                <!-- PDF 7 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/image/e-commerce.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
+                        <div class="card-body">
+                            <h3>E-commerce: tout savoir avant de créez une boutique en ligne</h3>
+                            <p>tout sur le e-commerce.</p>
+                            <p>Nombre acheté : 150</p>
+                            <p>Prix : 5,000 FCFA</p>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- PDF 8 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/image/créez votre site web avec worpress.png" alt="Couverture PDF Titre 8" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Créez votre  site web avec wordpress</h3>
+                            <p>Tout sur le création de site worpress</p>
+                            <p>Nombre acheté : 20</p>
+                            <p>Prix : 2,500 FCFA</p>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/image/sécurité informatique.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Sécurité informatique-apprendre l'attaque pour mieux se défendre </h3>
+                            <p>Guide Complet pour Débutants.</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 2,000 FCFA</p>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PDF 9 -->
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="/image/mathématiques analyse L3.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <div class="card-body">
+                            <h3>Mathématiques analyse L3 </h3>
+                            <p>Cours complet</p>
+                            <p>Nombre acheté : 6</p>
+                            <p>Prix : 2,500 FCFA</p>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <div class="text-center mt-4">
+                    <a href="boutiquepdf.html" class="btn btn-primary">VOIR PLUS DE PDF</a>
+                </div>
+
+
+    <!-- Section À propos -->
+    <section id="about" class="container py-5">
+      <h2 class="text-center mb-5">À propos de nous</h2>
+      <p class="text-center">Académie Virtuelle est une plateforme dédiée à l'apprentissage des compétences numériques. Notre mission est de former les professionnels de demain.</p>
+      <p class="text-center">Nous croyons fermement que l'éducation est la clé pour libérer le potentiel de chaque individu.</p>
+      <p class="text-center">Nos formateurs sont des experts dans leurs domaines, apportant une richesse d'expérience pratique à chaque session.</p>
+      <p class="text-center">Nous offrons une variété de cours, allant du développement web à la cybersécurité, pour répondre aux besoins du marché.</p>
+      <p class="text-center">Notre approche pédagogique combine théorie et pratique, permettant aux apprenants d'acquérir des compétences immédiatement applicables.</p>
+      <p class="text-center">Nous utilisons des technologies modernes et des outils d'apprentissage en ligne pour rendre l'éducation accessible à tous.</p>
+      <p class="text-center">En tant qu'organisation, nous sommes engagés à créer un environnement inclusif et diversifié pour tous nos étudiants.</p>
+      <p class="text-center">Nos partenariats avec des entreprises locales et internationales garantissent que nos programmes sont alignés sur les besoins du marché.</p>
+      <p class="text-center">Nous croyons en la formation continue, offrant des opportunités de mise à jour des compétences pour nos anciens élèves.</p>
+      <p class="text-center">Rejoignez-nous pour faire partie d'une communauté dynamique dédiée à l'excellence et à l'innovation dans le domaine numérique.</p>
+  </section>
+  
+
+    <!-- Section Services -->
+    <section id="services" class="bg-light py-5">
+      <div class="container">
+          <h2 class="text-center mb-5">Nos Services</h2>
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Création de sites web</h3>
+                          <img src="https://big4com.com/assets/images/creation-site-internet-2.jpg" alt="Création de sites web" class="card-img-top mb-3">
+                          <p class="card-text">Nous proposons la conception et le développement de sites web personnalisés.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Infographie</h3>
+                          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEis0HKz8vXqQVEEcYEohKraGnkt6izIkbxzUY4ybsbeWKMzUOiuW_Zw6xE54Txsdn5Qgux1f9Q0Ni7WWDwSkzHTOCQACO6DBVHDK1w_8n_fxX1_RoWR7LLYE8OKxFfW98lkRNH0UoZcJK0/s700/INFOGRAPHIE.jpg" alt="Infographie" class="card-img-top mb-3">
+                          <p class="card-text">Des services de conception graphique pour des projets créatifs et professionnels.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Community Management</h3>
+                          <img src="https://eventspys.fr/wp-content/uploads/2023/02/com2.jpeg" alt="Community Management" class="card-img-top mb-3">
+                          <p class="card-text">Gestion de vos réseaux sociaux pour améliorer votre présence en ligne.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Formation en ligne</h3>
+                          <img src="https://www.redacteur.com/blog/wp-content/uploads/sites/6/2023/02/Image-a-la-une-formation-en-ligne-740x447.png" alt="Formation en ligne" class="card-img-top mb-3">
+                          <p class="card-text">Des cours en ligne sur divers sujets pour développer vos compétences.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Consultation IT</h3>
+                          <img src="https://www.tetratech.com/wp-content/uploads/2023/09/Management-Consulting-Solutions-3.jpg" alt="Consultation IT" class="card-img-top mb-3">
+                          <p class="card-text">Des conseils d'experts pour optimiser votre infrastructure informatique.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm text-center">
+                      <div class="card-body">
+                          <h3 class="card-title">Marketing Digital</h3>
+                          <img src="https://www.potentielconsulting.ma/wp-content/uploads/2021/12/digi-2.jpg" alt="Marketing Digital" class="card-img-top mb-3">
+                          <p class="card-text">Stratégies pour améliorer votre visibilité en ligne et attirer plus de clients.</p>
+                          <a href="#" class="btn btn-outline-primary">En savoir plus</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  
+  
+
+  <section id="temoignages" class="container py-5">
+    <h2 class="text-center mb-4">Témoignages</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card text-center" style="min-width: 300px;">
+                <img src="https://img.freepik.com/photos-premium/etudiante-joyeuse-dans-salle-classe-tenant-manuel-camarades-classe-qui-lisent-derriere-elle_1218867-393954.jpg" alt="Photo de l'étudiant" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">Marie SOULAMA</h5>
+                    <p class="card-text">"Les cours étaient très bien structurés et m'ont aidé à acquérir de nouvelles compétences rapidement. Je recommande vivement !"</p>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center" style="min-width: 300px;">
+                <img src="https://img.freepik.com/photos-premium/garcon-universite-joyeux-reve-recevoir-son-diplome-portant-papiers-bloc-notes_1218867-467139.jpg" alt="Photo de l'étudiant" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">Jean Martin KONAN</h5>
+                    <p class="card-text">"Une expérience incroyable ! Les formateurs sont compétents et très accessibles. J'ai beaucoup appris."</p>
+                    <div class="rating">⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card text-center" style="min-width: 300px;">
+                <img src="https://img.freepik.com/photos-premium/photo-etudiant-i-image-etudiant-i-etudiants-souriants-i-etudiant-universitaire-i-etudiants-collage_403587-2980.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1727481600&semt=ais_hybrid" alt="Photo de l'étudiant" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">Sophie BAMBA</h5>
+                    <p class="card-text">"Les formations en ligne sont flexibles et m'ont permis de progresser à mon rythme. Merci Académie Virtuelle !"</p>
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+        <!-- Ajoutez plus de témoignages ici -->
+    </div>
+</section>
+
+
+
+
+    <!-- Section FAQ -->
+    <section id="faq" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">FAQ</h2>
+            <p><strong>Comment s'inscrire à un cours ?</strong> Vous pouvez vous inscrire en créant un compte et en choisissant le cours désiré.</p>
+            <p><strong>Y a-t-il des certificats ?</strong> Oui, des certificats sont délivrés à la fin de chaque formation.</p>
+        </div>
+    </section>
+
+    <!-- Section Blog -->
+    <section id="blog" class="container py-5">
+      <h2 class="text-center mb-5">Blog</h2>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                  <img src="https://comprendreaddiction.com/wp-content/uploads/2024/05/tableau-bord-statistiques-addiction-1024x585.webp" class="card-img-top" alt="Tendances en technologie">
+                  <div class="card-body">
+                      <h3 class="card-title">Les dernières tendances en technologie</h3>
+                      <p class="card-text">Découvrez les évolutions récentes dans le domaine numérique. Nous aborderons des sujets tels que l'intelligence artificielle, la blockchain, et l'Internet des objets (IoT). Ces technologies transforment non seulement la manière dont les entreprises fonctionnent, mais elles influencent également notre quotidien. Restez à jour avec les innovations qui redéfinissent notre avenir.</p>
+                      <a href="#" class="btn btn-outline-primary">Lire la suite</a>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                  <img src="https://www.metier.org/wp-content/uploads/2022/01/developpeuse-entrain-de-coder-1024x535.jpg" class="card-img-top" alt="Devenir développeur web">
+                  <div class="card-body">
+                      <h3 class="card-title">Comment devenir un développeur web</h3>
+                      <p class="card-text">Les compétences nécessaires pour se lancer dans le développement web incluent la maîtrise des langages de programmation comme HTML, CSS et JavaScript. Nous discuterons des différentes voies pour acquérir ces compétences, des ressources disponibles, et des conseils pratiques pour créer un portfolio attractif. De plus, nous aborderons l'importance de rester informé sur les nouvelles technologies et frameworks qui émergent constamment.</p>
+                      <a href="#" class="btn btn-outline-primary">Lire la suite</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  
+    <!-- Section Contact -->
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contactez-nous</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" placeholder="Votre nom">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Votre email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Votre message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="equipe" class="container py-5">
+        <h2 class="text-center mb-5">Notre Équipe</h2>
+        <div class="row">
+            <!-- Membre 1 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/kevin kiesse sanou.jpg" class="card-img-top" alt="Membre 1">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">KIESSE KEVIN</h5>
+                        <p class="card-subtitle mb-2 text-muted">Développeur Web</p>
+                        <p class="card-text">Expert en développement front-end, KEVIN se spécialise dans la création de sites web interactifs et modernes.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Membre 2 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYSPONcqLTkKPflPNsvrf4P6Lk1FlKGvwc6A&s" class="card-img-top" alt="Membre 2">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">LEON SIBIRI</h5>
+                        <p class="card-subtitle mb-2 text-muted">Designer Graphique</p>
+                        <p class="card-text">Passionnée de design, SIBIRI crée des visuels attrayants pour des sites web et des applications mobiles.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Membre 3 -->
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="https://media.licdn.com/dms/image/C4D03AQFMKzPn_AiItQ/profile-displayphoto-shrink_200_200/0/1625396501758?e=2147483647&v=beta&t=-I6SVLEdhW7xzb5iwZcyqKQQGRcZ_NphRvYOiRrMnc8" class="card-img-top" alt="Membre 3">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">MARIA SIRA</h5>
+                        <p class="card-subtitle mb-2 text-muted">Community Manager</p>
+                        <p class="card-text">Spécialiste des réseaux sociaux, SIRA gère les stratégies de communication digitale pour nos clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bouton Rejoindre Notre Équipe -->
         <div class="text-center mt-4">
-            <button id="show-more-btn" class="btn btn-primary">Voir plus de cours</button>
+            <a href="recrutement.html" class="btn btn-primary">Rejoindre notre équipe</a>
         </div>
-    </main>
-
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p>&copy; 2024 Académie Virtuelle. Tous droits réservés.</p>
+    </section>
+    
+    
+    <!-- Pied de page -->
+    <footer class="bg-dark text-white text-center py-4">
+        <div class="visitors-info">
+            <p><i class="fas fa-users"></i> Visiteurs : <span id="nombre-total-visiteurs">30254</span></p>
+            <p><i class="fas fa-user-clock"></i> En ligne : <span id="nombre-visiteurs-en-ligne">168</span></p>
         </div>
+        <p>&copy; 2024 Académie Virtuelle. Tous droits réservés.</p>
     </footer>
+<!-- Modal pour la lecture de la vidéo -->
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Lecture de la Vidéo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <video id="videoPlayer" width="100%" controls>
+                    <source src="" type="video/mp4">
+                    Votre navigateur ne supporte pas la lecture de la vidéo.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="scrollToTopBtn" class="scroll-to-top" title="Retour en haut">
+    <i class="fas fa-arrow-up"></i> <!-- Icône de flèche vers le haut -->
+</button>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Liens vers les scripts JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+   
+<script>
+    // Afficher le bouton lorsque l'utilisateur fait défiler vers le bas
+window.onscroll = function() {
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollToTopBtn.style.display = 'block'; // Affiche le bouton
+    } else {
+        scrollToTopBtn.style.display = 'none'; // Masque le bouton
+    }
+};
 
-    <script>
-         document.getElementById('show-more-btn').addEventListener('click', function() {
-            const moreCourses = document.getElementById('more-courses');
-            if (moreCourses.style.display === 'none') {
-                moreCourses.style.display = 'flex';
-                this.innerText = 'Afficher moins';
-            } else {
-                moreCourses.style.display = 'none';
-                this.innerText = 'Voir plus de cours';
+// Faire défiler vers le haut lorsque l'utilisateur clique sur le bouton
+document.getElementById('scrollToTopBtn').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Défilement en douceur vers le haut
+});
+
+
+    // Affichage du modal de confirmation
+document.querySelectorAll('.btn-outline-primary').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le lien par défaut
+        document.getElementById('confirmationModal').style.display = 'block'; // Affiche le modal de confirmation
+    });
+});
+
+// Fermer le modal de confirmation
+document.getElementById('closeConfirmationButton').addEventListener('click', function() {
+    document.getElementById('confirmationModal').style.display = 'none'; // Masque le modal de confirmation
+});
+
+// Si l'utilisateur clique sur "Oui"
+document.getElementById('confirmYes').addEventListener('click', function() {
+    document.getElementById('confirmationModal').style.display = 'none'; // Masque le modal de confirmation
+    document.getElementById('loginModal').style.display = 'block'; // Affiche le modal de connexion
+});
+
+// Si l'utilisateur clique sur "Non"
+document.getElementById('confirmNo').addEventListener('click', function() {
+    document.getElementById('confirmationModal').style.display = 'none'; // Masque le modal de confirmation
+});
+
+// Fermer le modal si l'utilisateur clique en dehors
+window.onclick = function(event) {
+    if (event.target == document.getElementById('confirmationModal')) {
+        document.getElementById('confirmationModal').style.display = 'none';
+    }
+    if (event.target == document.getElementById('loginModal')) {
+        document.getElementById('loginModal').style.display = 'none';
+    }
+};
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const bannerContent = document.querySelector('.banner-content');
+    let width = 0;
+
+    // Clonage des éléments pour une animation infinie
+    const items = bannerContent.innerHTML;
+    bannerContent.innerHTML += items;
+
+    // Calculez la largeur totale des éléments
+    const totalWidth = bannerContent.scrollWidth;
+
+    // Fonction pour le défilement automatique
+    function scrollBanner() {
+        width -= 1; // Ajustez la vitesse de défilement ici
+        bannerContent.style.transform = `translateX(${width}px)`;
+
+        if (Math.abs(width) >= totalWidth / 2) {
+            width = 0; // Réinitialise la position
+        }
+
+        requestAnimationFrame(scrollBanner); // Appel récursif pour un défilement fluide
+    }
+
+    scrollBanner(); // Démarre le défilement
+});
+
+
+// Désactiver le clic droit sur l'ensemble du site
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
+
+// Désactiver les raccourcis clavier pour inspecter la page (comme F12)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.shiftKey && e.key === 'J')) {
+        e.preventDefault();
+    }
+});
+// Détecter l'ouverture de la console
+var consoleOpen = false;
+var threshold = 160;
+
+setInterval(function() {
+    var start = new Date().getTime();
+    debugger;
+    var end = new Date().getTime();
+    if (end - start > threshold) {
+        consoleOpen = true;
+        alert("Veuillez ne pas utiliser les outils de développement.");
+    } else {
+        consoleOpen = false;
+    }
+}, 1000);
+
+    
+   // <!-- Script JavaScript pour gérer l'affichage des cours supplémentaires -->
+
+    document.getElementById("show-more-btn").addEventListener("click", function() {
+        var moreCourses = document.getElementById("more-courses");
+        if (moreCourses.classList.contains("d-none")) {
+            moreCourses.classList.remove("d-none");
+            this.textContent = "Voir moins de cours";
+        } else {
+            moreCourses.classList.add("d-none");
+            this.textContent = "Voir plus de cours";
+        }
+    });
+
+
+    function toggleVisibility() {
+        const morePdfs = document.querySelector('.more-pdfs');
+        const button = document.getElementById('seeMore');
+        if (morePdfs.style.display === 'none') {
+            morePdfs.style.display = 'block';
+            button.textContent = 'Voir moins de documents';
+        } else {
+            morePdfs.style.display = 'none';
+            button.textContent = 'Voir plus de documents';
+        }
+    }
+
+        // Fonction pour afficher la vidéo dans le modal
+        document.addEventListener('DOMContentLoaded', function () {
+            var videoCards = document.querySelectorAll('.card video'); // Supposons que vous ayez des vidéos dans des cartes
+            var videoModal = document.getElementById('videoModal');
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoModalLabel = document.getElementById('videoModalLabel');
+
+            videoCards.forEach(function (video) {
+                video.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var videoSrc = this.querySelector('source').getAttribute('src');
+                    var videoTitle = this.closest('.card-body').querySelector('.card-title').textContent;
+
+                    // Met à jour le titre et la source de la vidéo dans le modal
+                    videoModalLabel.textContent = videoTitle;
+                    videoPlayer.querySelector('source').setAttribute('src', videoSrc);
+                    videoPlayer.load();
+
+                    // Affiche le modal
+                    videoModal.style.display = "block"; // Affiche le modal
+                });
+            });
+
+            // Réinitialise la vidéo lorsqu'on ferme le modal
+            document.getElementById("closeVideoButton").addEventListener("click", function() {
+                videoPlayer.pause();
+                videoPlayer.querySelector('source').setAttribute('src', '');
+                videoPlayer.load();
+                videoModal.style.display = "none"; // Masque le modal
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Vérifie si l'utilisateur a déjà visité la page
+    if (!localStorage.getItem('hasVisited')) {
+        // Affiche la modale de bienvenue
+        document.getElementById('welcomeModal').style.display = 'block';
+
+        // Définit 'hasVisited' à true dans localStorage
+        localStorage.setItem('hasVisited', 'true');
+    }
+
+    // Ferme la modale de bienvenue
+    document.getElementById('closeWelcomeButton').addEventListener('click', function () {
+        document.getElementById('welcomeModal').style.display = 'none';
+    });
+
+    // Ferme la modale si l'utilisateur clique en dehors de la boîte de dialogue
+    window.onclick = function (event) {
+        if (event.target == document.getElementById('welcomeModal')) {
+            document.getElementById('welcomeModal').style.display = 'none';
+        }
+    };
+
+    // Action pour le bouton Commencer une formation
+    document.getElementById('startTrainingButton').addEventListener('click', function () {
+        document.getElementById('welcomeModal').style.display = 'none';
+        // Redirige vers la section des formations
+        window.location.href = "#cours"; // Change "#cours" par l'ID de la section souhaitée
+    });
+
+    // Action pour le bouton Visiter le site
+    document.getElementById('exploreButton').addEventListener('click', function () {
+        document.getElementById('welcomeModal').style.display = 'none';
+        // Ici, tu peux décider de rester sur la page ou rediriger vers une autre section
+        // Par exemple, rester sur la page d'accueil ou aller à une section spécifique
+        window.location.href = "#cours"; // Change "#about" par l'ID de la section souhaitée
+    });
+});
+
+        // Sélectionne tous les éléments vidéo
+        const videos = document.querySelectorAll('video');
+        const modal = new bootstrap.Modal(document.getElementById('videoModal'));
+        const modalVideo = document.getElementById('modalVideo');
+    
+        // Parcourt chaque vidéo pour ajouter un événement click
+        videos.forEach(video => {
+            video.addEventListener('click', function () {
+                const source = this.querySelector('source').src;
+                modalVideo.querySelector('source').src = source;
+                modalVideo.load();
+                modal.show();
+            });
+        });
+    
+        // Empêche la réinitialisation de la vidéo lorsqu'on ferme la modale
+        document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+            modalVideo.pause();
+        });
+
+        // Fonction pour intercepter le raccourci Ctrl+U
+    document.addEventListener('keydown', function (event) {
+        // Vérifie si Ctrl (ou Cmd sur Mac) et U sont pressés
+        if ((event.ctrlKey || event.metaKey) && event.key === 'u') {
+            event.preventDefault(); // Empêche le comportement par défaut
+            alert("L'accès à la source du code est impossible sur ce site."); // Message d'information
+        }
+    });
+
+            // Alerte lors de la capture d'écran
+            document.addEventListener('keydown', function(event) {
+            if (event.key === 'PrintScreen') {
+                alert("Capture d'écran impossible sur ce site.");
             }
         });
     </script>
+     <script src="script.js"></script>
+     <script>
+         document.addEventListener('DOMContentLoaded', function() {
+             // Masquer l'icône de chargement après le chargement du contenu
+             const loadingContainer = document.querySelector('.loading-container');
+             loadingContainer.style.display = 'none'; // Masquer l'icône une fois le contenu chargé
+         });
+     </script>
+        
 </body>
 </html>
