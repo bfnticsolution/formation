@@ -3,150 +3,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boutique PDF - Académie Virtuelle</title>
+    <title>Académie Virtuelle</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
-        body {
-            background-color: #f4f4f9;
-            font-family: Arial, sans-serif;
-        }
-
-        .pdf-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .pdf-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-
-        .more-pdfs {
-            display: none;
+        .flag-icon {
+            margin-right: 8px;
         }
     </style>
+    <style>
+        .scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Distance par rapport au bas de la page */
+    right: 20px; /* Distance par rapport à la droite de la page */
+    background-color: #007bff; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px 15px; /* Espacement intérieur */
+    cursor: pointer; /* Changer le curseur au survol */
+    display: none; /* Masquer par défaut */
+    z-index: 1000; /* S'assurer que le bouton est au-dessus des autres éléments */
+    transition: background-color 0.3s; /* Transition pour le changement de couleur */
+}
+.scroll-to-top i {
+    margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+    </style>
+<style>
+
+/* Style de la section des témoignages */
+.temoignages {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #003366;
+}
+
+.temoignages-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.temoignage-item {
+    background-color: #003366;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 15px;
+}
+
+.temoignage-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+
+.card {
+    transition: transform 0.2s; /* Animation de transformation */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+
+.rating {
+    font-size: 1.5em;
+    color: #003366; /* Couleur dorée pour les étoiles */
+}
+
+.visitors-info {
+        display: flex;
+        gap: 20px; /* Espace entre les éléments */
+        align-items: center;
+    }
+
+    .visitors-info p {
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .visitors-info i {
+        margin-right: 8px; /* Espace entre l'icône et le texte */
+    }
+    /* Style pour les vidéos avec une bordure colorée */
+    video {
+        border: 3px solid  #f58c00; /* Remplacez #3498db par la couleur de votre choix */
+        border-radius: 10px; /* Optionnel : pour arrondir les coins */
+    }
+
+    /* Style pour la vidéo dans la modale */
+    #modalVideo {
+        border: 3px solid #e74c3c; /* Une couleur différente pour la vidéo en plein écran */
+        border-radius: 8px; /* Optionnel : pour arrondir les coins */
+    }
+
+
+    .close {
+        color: #d10000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: rgb(245, 6, 6);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Animation d'apparition */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    
+    /* Style des modales */
+    .modal {
+        display: none; /* Masqué par défaut */
+        position: fixed; /* Reste au même endroit */
+        z-index: 1; /* Au-dessus du contenu */
+        left: 0;
+        top: 0;
+        width: 100%; /* Plein écran */
+        height: 100%; /* Plein écran */
+        overflow: auto; /* Ajout de défilement si nécessaire */
+        background-color: rgba(0, 0, 0, 0.5); /* Fond noir transparent */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Centré */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 100%; /* Largeur */
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        animation: rotateIn 0.5s; /* Animation de rotation */
+    }
+
+    @keyframes rotateIn {
+        from {
+            transform: rotateY(-180deg);
+            opacity: 0;
+        }
+        to {
+            transform: rotateY(0);
+            opacity: 1;
+        }
+    }
+    .modal-content {
+    animation: popin 0.5s ease;
+}
+
+@keyframes popin {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+#progressContainer {
+    width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+#progressBar {
+    height: 100%;
+    background-color: #4caf50;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.4s ease;
+}
+#progressBar {
+    transition: width 0.3s ease-in-out;
+}
+
+.select-country {
+    display: flex;
+    align-items: center;
+}
+
+.select-country img {
+    width: 24px;
+    height: auto;
+    margin-right: 8px;
+}
+select {
+    font-family: "Arial", sans-serif; /* Changez la police si nécessaire */
+    font-size: 16px;
+}
+
+        
+       
+    #pdfStore {
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    
+    .pdf-item {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+    
+    .pdf-item h3 {
+        margin: 0 0 10px 0;
+    }
+    
+    .pdf-item p {
+        margin: 5px 0;
+    }
+    
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    
+    .btn-success:hover {
+        background-color:  #f58c00;
+    }
+
+    .pdf-cover {
+    width: 90%; /* Ajustez la largeur selon vos besoins */
+    height: auto; /* Maintient le rapport d'aspect */
+    border-radius: 50px; /* Arrondir les coins de l'image */
+    margin-bottom: 1px; /* Espacement entre l'image et le texte */
+}
+.card {
+    transition: transform 0.2s; /* Animation de transformation */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Effet de zoom au survol */
+}
+
+
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1; /* Au-dessus de tout */
+    left: 0;
+    top: 0;
+    width: 100%; /* Plein écran */
+    height: 100%; /* Plein écran */
+    overflow: auto; /* Si besoin de faire défiler */
+    background-color: rgba(0, 0, 0, 0.4); /* Fond noir transparent */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% du haut et centré */
+    padding: 20px;
+    border: 1px solid #e10303;
+    width: 100%; /* Largeur de 80% */
+}
+
+.close {
+    color:  #f58c00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color:  #f58c00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+        /* Styles pour le modal de confirmation */
+        .modal {
+    display: none; /* Masqué par défaut */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid  #f58c00;
+    width: 90%;
+    text-align: center;
+}
+
+.close {
+    color:  #f58c00;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(212, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Couleurs ajustées pour correspondre au logo */
+
+/* Bannière défilante */
+.banner-container {
+    background-color: #003366; /* Bleu vif correspondant au fond du logo */
+    color: #ffffff; /* Texte blanc pour le contraste */
+}
+
+/* Boutons */
+.scroll-to-top {
+    background-color: #f58c00; /* Orange vif du logo */
+}
+
+.scroll-to-top:hover {
+    background-color: #cc7000; /* Version plus sombre de l'orange pour le survol */
+}
+
+.btn-success {
+    background-color: #f58c00; /* Orange vif pour les boutons */
+}
+
+.btn-success:hover {
+    background-color: #cc7000; /* Orange plus sombre au survol */
+}
+
+/* Témoignages */
+.temoignages {
+    background-color: #003366; /* Bleu vif */
+    border-radius: 45px;
+}
+
+.rating {
+    color: #f58c00; /* Orange vif pour les étoiles */
+    border-radius: 20px;
+}
+
+/* Modales et contenu */
+.modal-content {
+    background-color: #003366; /* Arrière-plan bleu pour correspondre au logo */
+    color: #ffffff; /* Texte blanc pour contraste */
+}
+
+/* Progress Bar */
+#progressBar {
+    background-color: #f58c00; /* Orange vif du logo */
+}
+
+/* Autres ajustements d'éléments */
+.card:hover {
+    border-color: #002466; /* Orange vif pour le survol */
+    border-radius: 20px;
+}
+
+.pdf-item {
+    border-color: #f58c00; /* Bordures oranges pour les cartes PDF */
+}
+
+
+.loginButton {
+    background: #f58c00;
+    color: rgb(249, 247, 244);
+    margin: auto;
+    padding: 10px;
+    border: 2px solid  #f4f4f7;
+    border-radius: 20px;
+}
+
+</style>
+<style>
+    /* Conteneur pour l'icône de chargement */
+    .loading-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centre l'icône sur la page */
+        z-index: 9999; /* Assure que l'icône est au-dessus des autres contenus */
+        
+    }
+
+    /* Animation de rotation de l'icône */
+    .loading-icon {
+            width: 100%; /* Ajustez la taille selon vos besoins */
+            height: auto; /* Garde les proportions de l'image */
+            animation: spin 5s linear infinite; /* Animation de rotation */
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg); /* Commence à 0 degrés */
+        }
+        100% {
+            transform: rotate(360deg); /* Finit à 360 degrés */
+        }
+    }
+</style>
 </head>
-<body>
-    <header class="bg-dark text-white py-3">
-        <div class="container text-center">
-            <h1>Boutique PDF</h1>
-            <p>Explorez notre collection de PDF pour enrichir vos connaissances.</p>
+<body class="fade-in">
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#accueil">
+            <img src="images/logo université virtuelle.png" alt="Académie Virtuelle" style="height: 50px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#accueil">
+                        <i class="fas fa-home"></i> Accueil
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cours.html">
+                        <i class="fas fa-book"></i> Cours
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="boutiquepdf.html">
+                        <i class="fas fa-concierge-bell"></i> Boutique PDF
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#blog">
+                        <i class="fas fa-blog"></i> Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">
+                        <i class="fas fa-info-circle"></i> À propos
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonials">
+                        <i class="fas fa-users"></i> Témoignages
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                </li>
+                <br>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-primary" href="inscription et connexion.html">
+                        <i class="fas fa-sign-in-alt"></i> Déconnexion
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
     </header>
 
-    <main class="container my-5">
-        <section id="pdfStore" class="row">
-            <!-- PDF 1 -->
-            <div class="col-md-4">
-                <div class="card pdf-card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/Pratique%20de%20MySQL%20et%20PHP.jpg" alt="Couverture PDF MySQL et PHP" class="card-img-top">
-                    <div class="card-body">
-                        <h3>Pratique de MySQL et PHP</h3>
-                        <p>Tout sur MySQL et PHP.</p>
-                        <p>Nombre acheté : 121</p>
-                        <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_1.pdf" class="btn btn-success">Acheter</a>
-                    </div>
-                </div>
-            </div>
+    <section id="pdfStore" class="container py-5">
+        <h2 class="text-center mb-5">Boutique PDF</h2>
+        <div class="row">
             <!-- PDF 2 -->
             <div class="col-md-4">
-                <div class="card pdf-card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/Apprendre%20a%20programmer%20avec%20python.jpg" alt="Couverture PDF Python" class="card-img-top">
+                <div class="card mb-4 shadow-sm">
+                    <img src="image/Apprendre a programmer avec python.jpg" alt="Couverture PDF Titre 2" class="card-img-top">
                     <div class="card-body">
                         <h3>Apprendre à programmer avec Python</h3>
                         <p>Devenir un pro.</p>
                         <p>Nombre acheté : 18</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_2.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
+    
             <!-- PDF 3 -->
             <div class="col-md-4">
-                <div class="card pdf-card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/le%20grand%20livre%20de%20la%20vente.jpg" alt="Couverture PDF Vente" class="card-img-top">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/le grand livre de la vente.jpg" alt="Couverture PDF Titre 3" class="card-img-top">
                     <div class="card-body">
                         <h3>Le Grand livre de la Vente</h3>
-                        <p>Vendez plus.</p>
+                        <p>Vendez plus</p>
                         <p>Nombre acheté : 302</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Section des PDFs supplémentaires -->
-        <section id="more-pdfs" class="row">
+    
             <!-- PDF 4 -->
             <div class="col-md-4">
-                <div class="card pdf-card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/e-commerce.jpg" alt="Couverture PDF E-commerce" class="card-img-top">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/Apprendre le C++.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
                     <div class="card-body">
-                        <h3>E-commerce: Tout savoir avant de créer une boutique en ligne</h3>
-                        <p>Tout sur le e-commerce.</p>
-                        <p>Nombre acheté : 150</p>
-                        <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <h3>Apprendre le C++</h3>
+                        <p>Techniques pas à pas sur le C++.</p>
+                        <p>Nombre acheté : 7</p>
+                        <p>Prix : 3,000 FCFA</p>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
+    
             <!-- PDF 5 -->
             <div class="col-md-4">
-                <div class="card pdf-card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/Introduction%20a%20l'algorithmique.jpg" alt="Couverture PDF Algorithmique" class="card-img-top">
+                <div class="card mb-4 shadow-sm">
+                    <img src="/image/Introduction a l'algorithmique.jpg" alt="Couverture PDF Titre 5" class="card-img-top">
                     <div class="card-body">
                         <h3>Introduction à l'algorithmique</h3>
-                        <p>Acquérir une base solide.</p>
+                        <p>Acquerir de base solide.</p>
                         <p>Nombre acheté : 10</p>
                         <p>Prix : 2,000 FCFA</p>
-                        <a href="lien_vers_pdf_5.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
-
+    
+            <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/cr%C3%A9ez%20votre%20site%20web.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/créez votre site web.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Créez votre site web: Guide complet</h3>
                         <p>Apprenez à créer votre site web.</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
    
-           
-       
+
+
+
             <div class="more-pdfs" style="display: none;">
                 <!-- PDF 7 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/e-commerce.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
+                        <img src="/image/e-commerce.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
                         <div class="card-body">
                             <h3>E-commerce: tout savoir avant de créez une boutique en ligne</h3>
                             <p>tout sur le e-commerce.</p>
                             <p>Nombre acheté : 150</p>
                             <p>Prix : 5,000 FCFA</p>
-                            <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -154,13 +581,13 @@
                 <!-- PDF 8 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/cr%C3%A9ez%20votre%20site%20web%20avec%20worpress.png" alt="Couverture PDF Titre 8" class="card-img-top">
+                        <img src="/image/créez votre site web avec worpress.png" alt="Couverture PDF Titre 8" class="card-img-top">
                         <div class="card-body">
                             <h3>Créez votre  site web avec wordpress</h3>
                             <p>Tout sur le création de site worpress</p>
                             <p>Nombre acheté : 20</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -168,13 +595,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/s%C3%A9curit%C3%A9%20informatique.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/sécurité informatique.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>Sécurité informatique-apprendre l'attaque pour mieux se défendre </h3>
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,000 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -182,13 +609,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/math%C3%A9matiques%20analyse%20L3.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/mathématiques analyse L3.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>Mathématiques analyse L3 </h3>
                             <p>Cours complet</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -196,13 +623,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/architecture%20de%20l'ordinateur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/architecture de l'ordinateur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>Architecture de l'ordinateur </h3>
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 3,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -210,13 +637,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/l'ordinateur%20portable%20windows%2010%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/l'ordinateur portable windows 10 pour les nuls.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>l'Ordinateur portable windows 10 pour les nuls</h3>
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix :4,000 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -224,13 +651,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/exos%20r%C3%A9solus%20physique%20chimie%20MPSI.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/exos résolus physique chimie MPSI.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>Exos résolus physique chimie MPSI </h3>
                             <p>Guide Complet pour Débutants.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 2,500 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -238,13 +665,13 @@
                 <!-- PDF 9 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/pgysique-chimie%20terminales-livre%20du%20professeur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                        <img src="/image/pgysique-chimie terminales-livre du professeur.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                         <div class="card-body">
                             <h3>Physique/chimie terminales-livre du professeur </h3>
                             <p>Tout sur la physique chimie.</p>
                             <p>Nombre acheté : 6</p>
                             <p>Prix : 3,000 FCFA</p>
-                            <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -252,13 +679,13 @@
                 <!-- PDF 10 -->
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
-                        <img src="/couverture%20pdf/les%20r%C3%A9seaux%20informatique.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
+                        <img src="/image/les réseaux informatique.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
                         <div class="card-body">
                             <h3>Les réseaux informatique</h3>
                             <p>Tout savoir sur les réseaux informatique</p>
                             <p>Nombre acheté : 4</p>
                             <p>Prix : 3,500 FCFA</p>
-                            <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                            <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                         </div>
                     </div>
                 </div>
@@ -266,13 +693,13 @@
     
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/architecture%20des%20machines%20et%20des%20syst%C3%A8mes%20informatique.jpg" alt="Couverture PDF Titre 3" class="card-img-top">
+                    <img src="/image/architecture des machines et des systèmes informatique.jpg" alt="Couverture PDF Titre 3" class="card-img-top">
                     <div class="card-body">
                         <h3>Architecture des machines et des systèmes d'exploitations</h3>
                         <p>Connaître le contenu de la machine</p>
                         <p>Nombre acheté : 302</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_3.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -280,13 +707,13 @@
             <!-- PDF 4 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/physique-chimie%20terminale%20S.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <img src="/image/physique chimie terminale générale.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
                     <div class="card-body">
                         <h3>Physique chimie terminale S</h3>
                         <p>cours complet</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 2,500 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -295,13 +722,13 @@
             <!-- PDF 4 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/word%202016%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <img src="image/word 2016 pour les nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
                     <div class="card-body">
                         <h3>Word 2016 pour les nuls</h3>
                         <p>Tout sur word 2016</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -309,13 +736,13 @@
             <!-- PDF 4 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/le%20marketing%20digital%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <img src="/image/le marketing digital pour les nuls.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
                     <div class="card-body">
                         <h3>le marketing digital pour les nuls</h3>
                         <p>Toute la strategie de la vente en ligne</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 8,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -323,13 +750,13 @@
             <!-- PDF 4 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/mini%20manuel%20chimie%20organique.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
+                    <img src="/image/mini manuel chimie organique.jpg" alt="Couverture PDF Titre 4" class="card-img-top">
                     <div class="card-body">
                         <h3>Mini manuel chimie organique</h3>
                         <p>l'Essentiel du cours sur la chimie organique</p>
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_4.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -338,13 +765,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/chimie%20des%20solutions.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/chimie des solutions.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Chimie des solutions </h3>
                         <p>Cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -352,13 +779,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/physique%20chimie%20s%C3%A9conde.png" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/physique chimie séconde.png" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Physique chimie séconde</h3>
                         <p>Cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 2,500 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -366,13 +793,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/informatique%20pour%20tous.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/informatique pour tous.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Informatique pour tous-programation python, langage SQL </h3>
                         <p>Devenir un pro en informatique </p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -380,13 +807,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/le%20management%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/le management pour les nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Le management pour les nuls </h3>
                         <p>Devenir un pro en management</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -394,13 +821,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/excel%202016%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/excel 2016 pour les nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Excel 2016 pour les nuls </h3>
                         <p>Les bases de excel 2016</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -408,13 +835,13 @@
             <!-- PDF 6 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/le%20hacking%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
+                    <img src="/image/le hacking pour les nuls.jpg" alt="Couverture PDF Titre 6" class="card-img-top">
                     <div class="card-body">
                         <h3>Le hacking pour les nuls </h3>
                         <p>Devenir un hacker professionel</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 7,000 FCFA</p>
-                        <a href="lien_vers_pdf_6.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -422,13 +849,13 @@
             <!-- PDF 7 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/debuter%20en%20informatique.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
+                    <img src="/image/debuter en informatique.jpg" alt="Couverture PDF Titre 7" class="card-img-top">
                     <div class="card-body">
                         <h3>Debuter en informatique</h3>
                         <p>Principes Fondamentaux et Meilleures Pratiques.</p>
                         <p>Nombre acheté : 11</p>
                         <p>Prix : 4,000 FCFA</p>
-                        <a href="lien_vers_pdf_7.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -436,13 +863,13 @@
             <!-- PDF 8 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/glossaire%20des%20termes%20informatique.jpg" alt="Couverture PDF Titre 8" class="card-img-top">
+                    <img src="/image/glossaire des termes informatique.jpg" alt="Couverture PDF Titre 8" class="card-img-top">
                     <div class="card-body">
                         <h3>Glossaire des termes informatique</h3>
                         <p>Comprendre les termes informatique.</p>
                         <p>Nombre acheté : 3</p>
                         <p>Prix : 2,000 FCFA</p>
-                        <a href="lien_vers_pdf_8.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -450,13 +877,13 @@
             <!-- PDF 9 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/informatique-MP-PSI-PT.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
+                    <img src="/image/informatique-MP-PSI-PT.jpg" alt="Couverture PDF Titre 9" class="card-img-top">
                     <div class="card-body">
                         <h3>Informatique: MP, PC, PSI, PT annales corrigées et commentées</h3>
                         <p>Apprendre plus de l'informatique</p>
                         <p>Nombre acheté : 10</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_9.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -464,13 +891,13 @@
             <!-- PDF 10 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/codage%20et%20cryptographie.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
+                    <img src="/image/codage et cryptographie.jpg" alt="Couverture PDF Titre 10" class="card-img-top">
                     <div class="card-body">
                         <h3>Codage et cryptographie-mathematiciens espions et pirates informatique</h3>
                         <p>les bases solides</p>
                         <p>Nombre acheté : 5</p>
                         <p>Prix : 4,500 FCFA</p>
-                        <a href="lien_vers_pdf_10.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -478,13 +905,13 @@
             <!-- PDF 11 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/math%C3%A9matiques%20L1.jpg" alt="Couverture PDF Titre 11" class="card-img-top">
+                    <img src="/image/mathématiques L1.jpg" alt="Couverture PDF Titre 11" class="card-img-top">
                     <div class="card-body">
                         <h3>Mathématiques L1: cours complet avec 1000 tests et exercices corrigés</h3>
                         <p>Maths Licence 1.</p> 
                         <p>Nombre acheté : 7</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_11.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -492,13 +919,13 @@
             <!-- PDF 12 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/math%C3%A9matiques%20pour%20l'ing%C3%A9nieur.jpg" alt="Couverture PDF Titre 12" class="card-img-top">
+                    <img src="/image/mathématiques pour l'ingénieur.jpg" alt="Couverture PDF Titre 12" class="card-img-top">
                     <div class="card-body">
                         <h3>Mathématiques pour l'ingénieur</h3>
                         <p>une autre facette de l'ingénieur</p>
                         <p>Nombre acheté : 8</p>
                         <p>Prix : 5,000 FCFA</p>
-                        <a href="lien_vers_pdf_12.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -506,13 +933,13 @@
             <!-- PDF 13 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/python%20pour%20les%20nuls.jpg" alt="Couverture PDF Titre 13" class="card-img-top">
+                    <img src="/image/python pour les nuls.jpg" alt="Couverture PDF Titre 13" class="card-img-top">
                     <div class="card-body">
                         <h3>Python pour les nuls</h3>
                         <p>Bases solides de python</p>
                         <p>Nombre acheté : 6</p>
                         <p>Prix : 6,000 FCFA</p>
-                        <a href="lien_vers_pdf_13.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -520,13 +947,13 @@
             <!-- PDF 14 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/biochimie%20clinique.jpg" alt="Couverture PDF Titre 14" class="card-img-top">
+                    <img src="/image/biochimie clinique.jpg" alt="Couverture PDF Titre 14" class="card-img-top">
                     <div class="card-body">
                         <h3>Biochimie clinique</h3>
                         <p>le cours complet</p>
                         <p>Nombre acheté : 9</p>
                         <p>Prix : 7,000 FCFA</p>
-                        <a href="lien_vers_pdf_14.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
@@ -534,35 +961,32 @@
             <!-- PDF 15 -->
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
-                    <img src="/couverture%20pdf/alg%C3%A8bre%20et%20analyses.jpg" alt="Couverture PDF Titre 15" class="card-img-top">
+                    <img src="/image/algèbre et analyses.jpg" alt="Couverture PDF Titre 15" class="card-img-top">
                     <div class="card-body">
                         <h3>Algèbre et analyse</h3>
                         <p>cours complet</p>
                         <p>Nombre acheté : 11</p>
                         <p>Prix : 3,000 FCFA</p>
-                        <a href="lien_vers_pdf_15.pdf" class="btn btn-success">Acheter</a>
+                        <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
                     </div>
                 </div>
             </div>
-    
             
+
             <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img src="/couverture%20pdf/demarrer%20avec%20windows%2010.jpg" alt="Couverture PDF Titre 21" class="pdf-cover">
+                <img src="/image/demarrer avec windows 10.jpg" alt="Couverture PDF Titre 21" class="pdf-cover">
                 <h3>Demarrer avec windows 10</h3>
                 <p>Tout sur le windows 10</p>
                 <p>Nombre acheté : 7</p>
                 <p>Prix : 8,000 FCFA</p>
-                <a href="lien_vers_pdf_21.pdf" class="btn btn-success">Acheter</a>
+                <a href="https://paylink.ligdicash.com/boutiquepdf" class="btn btn-success">Acheter</a>
             </div>
     </div>
-        </section>
+    
+</section>
 
-        <!-- Bouton pour afficher plus de PDFs -->
-        <div class="text-center mt-4">
-            <button id="show-more-btn" class="btn btn-primary">Voir plus de PDFs</button>
-        </div>
-    </main>
+
 
     <footer class="bg-dark text-white py-4 text-center">
         <p>&copy; 2024 Académie Virtuelle. Tous droits réservés.</p>
